@@ -19,3 +19,14 @@ Open CTRL+SHIFT+P Git Clone
 Copy out of github
 
 Then to deploy you need to file>open folder>open just the robot code so you can deploy it
+
+How to commit changes:
+Click branches on the left.
+Add comment
+Click Plus
+Click Checkmark
+Click Recycle button
+
+Ri3D:
+https://www.youtube.com/watch?v=vvwom90aQ-w&feature=youtu.be
+
