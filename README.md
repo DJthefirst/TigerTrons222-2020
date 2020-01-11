@@ -13,6 +13,7 @@ Last Year's Github: https://github.com/DJthefirst/TigerTrons222-2019
 
 Git Bash
 
+Setting up Github on VSCode
 Open CTRL+SHIFT+P Git Clone
 
 Copy out of github
