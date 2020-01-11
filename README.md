@@ -9,6 +9,9 @@ https://github.com/wpilibsuite/allwpilib/releases
 FRC Game Tools Download:
 https://docs.wpilib.org/en/latest/docs/getting-started/getting-started-frc-control-system/frc-game-tools.html
 
+Spark Max software:
+http://www.revrobotics.com/sparkmax-software/
+
 Last Year's Github: https://github.com/DJthefirst/TigerTrons222-2019
 
 Git Bash
@@ -29,4 +32,6 @@ Click Recycle button
 
 Ri3D:
 https://www.youtube.com/watch?v=vvwom90aQ-w&feature=youtu.be
+
+https://github.com/wdoherty/IllinoisRi3D_2020/tree/master/Ri3D
 
