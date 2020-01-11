@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -25,25 +28,29 @@ public class RobotContainer {
 
   private final Drive_Arcade m_autoCommand = new Drive_Arcade(m_Drivetrain);
 
+  XboxController m_driverController = new XboxController(0);
 
 
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-  }
 
-  /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {
-  }
+    // Configure default commands
+    // Set the default drive command to split-stick arcade drive
+    m_robotDrive.setDefaultCommand(
+        // A split-stick arcade command, with forward/backward controlled by the left
+        // hand, and turning controlled by the right.
+        new DefaultDrive(
+            m_robotDrive,
+            () -> m_driverController.getY(GenericHID.Hand.kLeft),
+            () -> m_driverController.getX(GenericHID.Hand.kRight)));
 
+    // Add commands to the autonomous command chooser
+    m_chooser.addOption("Simple Auto", m_simpleAuto);
+    m_chooser.addOption("Complex Auto", m_complexAuto);
+
+    // Put the chooser on the dashboard
+    Shuffleboard.getTab("Autonomous").add(m_chooser);
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
