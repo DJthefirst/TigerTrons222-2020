@@ -9,21 +9,21 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class Drivetrain extends SubsystemBase {
 
-    //CANSparkMax leftMaster1SparkMax = new CANSparkMax(1,MotorType.kBrushless);
-    //CANSparkMax leftSlave2SparkMax = new CANSparkMax(2,MotorType.kBrushless);
-    //CANSparkMax leftSlave3SparkMax = new CANSparkMax(3,MotorType.kBrushless);
-    //CANSparkMax rightMaster1SparkMax = new CANSparkMax(4,MotorType.kBrushless);
-    //CANSparkMax rightSlave2SparkMax = new CANSparkMax(5,MotorType.kBrushless);
-    //CANSparkMax rightSlave3SparkMax = new CANSparkMax(6,MotorType.kBrushless);
+    // CANSparkMax leftMaster1SparkMax = new CANSparkMax(1,MotorType.kBrushless);
+    // CANSparkMax leftSlave2SparkMax = new CANSparkMax(2,MotorType.kBrushless);
+    // CANSparkMax leftSlave3SparkMax = new CANSparkMax(3,MotorType.kBrushless);
+    // CANSparkMax rightMaster1SparkMax = new CANSparkMax(4,MotorType.kBrushless);
+    // CANSparkMax rightSlave2SparkMax = new CANSparkMax(5,MotorType.kBrushless);
+    // CANSparkMax rightSlave3SparkMax = new CANSparkMax(6,MotorType.kBrushless);
 
-    WPI_TalonSRX leftMasterTalon = new WPI_TalonSRX(1);
-	WPI_TalonSRX rightMasterTalon = new WPI_TalonSRX(2);
+    WPI_TalonSRX leftMasterTalon = new WPI_TalonSRX(4);
+	WPI_TalonSRX rightMasterTalon = new WPI_TalonSRX(1);
 	
 	
-	WPI_TalonSRX leftSlave1Talon = new WPI_TalonSRX(3);
-	WPI_TalonSRX leftSlave2Talon = new WPI_TalonSRX(4);
-	WPI_TalonSRX rightSlave1Talon = new WPI_TalonSRX(5);
-	WPI_TalonSRX rightSlave2Talon = new WPI_TalonSRX(6);
+	WPI_TalonSRX leftSlave1Talon = new WPI_TalonSRX(5);
+	WPI_TalonSRX leftSlave2Talon = new WPI_TalonSRX(6);
+	WPI_TalonSRX rightSlave1Talon = new WPI_TalonSRX(2);
+	WPI_TalonSRX rightSlave2Talon = new WPI_TalonSRX(3);
 
     DifferentialDrive differentialDrive = new DifferentialDrive(rightMasterTalon,leftMasterTalon);
 
@@ -42,6 +42,6 @@ public Drivetrain()
 
 public void arcadeDrive (double moveSpeed, double rotateSpeed)
 {
-    differentialDrive.arcadeDrive(moveSpeed,-rotateSpeed);
+    differentialDrive.arcadeDrive(moveSpeed,rotateSpeed);
 }
 }

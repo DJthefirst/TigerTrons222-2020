@@ -23,7 +23,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain m_drivetrain = new Drivetrain();
 
-  private final Drive_Arcade m_autoCommand = new Drive_Arcade(m_drivetrain);
+  private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
 
   public static final XboxController Controller = new XboxController(0);
 	public static final XboxController Controller2 = new XboxController(1);
@@ -31,6 +31,8 @@ public class RobotContainer {
 
   public RobotContainer() {
 
+
+    m_drivetrain.setDefaultCommand(m_drive_arcade);
   }
 
   /**
@@ -40,6 +42,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return m_drive_arcade;
   }
 }
