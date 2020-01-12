@@ -11,13 +11,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.commands.SparyZoomZoom;
 import frc.robot.subsystems.Drivetrain;
-<<<<<<< HEAD
-import frc.robot.subsystems.SparyDeMax;
-=======
 import frc.robot.subsystems.HatchSubsystem;
+import frc.robot.subsystems.SparyDeMax;
 import frc.robot.commands.GrabHatch;
 import frc.robot.commands.ReleaseHatch;
->>>>>>> 6548331729b7468901eaa9e23479f66f32efff3b
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
