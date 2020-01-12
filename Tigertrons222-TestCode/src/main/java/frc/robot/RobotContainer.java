@@ -10,7 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.HatchSubsystem;
+import frc.robot.commands.GrabHatch;
+import frc.robot.commands.ReleaseHatch;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 /**
@@ -25,14 +29,34 @@ public class RobotContainer {
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
 
+  private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
+
   public static final XboxController Controller = new XboxController(0);
 	public static final XboxController Controller2 = new XboxController(1);
 
 
   public RobotContainer() {
-
+    configureButtonBindings();
 
     m_drivetrain.setDefaultCommand(m_drive_arcade);
+  }
+  /**
+   * Use this method to define your button->command mappings.  Buttons can be created by
+   * instantiating a {@link GenericHID} or one of its subclasses ({@link
+   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
+   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   */
+  private void configureButtonBindings() {
+    // Grab the hatch when the 'A' button is pressed.
+    //new XboxController(0).getAButton(new GrabHatch(m_hatchSubsystem));
+    // Release the hatch when the 'B' button is pressed.
+    //new XboxController(0).getBButton(new ReleaseHatch(m_hatchSubsystem));
+    // While holding the shoulder button, drive at half speed
+    new JoystickButton(Controller, 1)
+    .whenPressed(new GrabHatch(m_hatchSubsystem));
+    new JoystickButton(Controller, 2)
+    .whenPressed(new ReleaseHatch(m_hatchSubsystem));
+
   }
 
   /**
