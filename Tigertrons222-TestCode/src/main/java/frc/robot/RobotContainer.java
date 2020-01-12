@@ -9,7 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive_Arcade;
+import frc.robot.commands.SparyZoomZoom;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.SparyDeMax;
 import edu.wpi.first.wpilibj2.command.Command;
 
 
@@ -22,8 +24,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain m_drivetrain = new Drivetrain();
+  private final SparyDeMax m_spark = new SparyDeMax();
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
+  private final SparyZoomZoom m_drive_sparky = new SparyZoomZoom(m_spark);
 
   public static final XboxController Controller = new XboxController(0);
 	public static final XboxController Controller2 = new XboxController(1);
@@ -33,6 +37,7 @@ public class RobotContainer {
 
 
     m_drivetrain.setDefaultCommand(m_drive_arcade);
+    m_spark.setDefaultCommand(m_drive_sparky);
   }
 
   /**
