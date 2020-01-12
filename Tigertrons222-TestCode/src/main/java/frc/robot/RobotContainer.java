@@ -13,8 +13,8 @@ import frc.robot.commands.SparyZoomZoom;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.HatchSubsystem;
 import frc.robot.subsystems.SparyDeMax;
-import frc.robot.commands.GrabHatch;
-import frc.robot.commands.ReleaseHatch;
+import frc.robot.commands.Pnu_HatchIn;
+import frc.robot.commands.Pnu_HatchOut;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -36,8 +36,31 @@ public class RobotContainer {
   private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
 
   public static final XboxController Controller = new XboxController(0);
-	public static final XboxController Controller2 = new XboxController(1);
+  public static final XboxController Controller2 = new XboxController(1);
+  
+  //Controller 1
+  JoystickButton A1 = new JoystickButton(Controller, 1);
+	JoystickButton B1 = new JoystickButton(Controller, 2);
+	JoystickButton X1 = new JoystickButton(Controller, 3);
+	JoystickButton Y1 = new JoystickButton(Controller, 4);
+	JoystickButton LB1 = new JoystickButton(Controller, 5);
+	JoystickButton RB1 = new JoystickButton(Controller, 6);
+	JoystickButton BK1 = new JoystickButton(Controller, 7);
+	JoystickButton ST1 = new JoystickButton(Controller, 8);
+  JoystickButton LS1 = new JoystickButton(Controller, 9);
+	JoystickButton RS1 = new JoystickButton(Controller, 10);
 
+	//Controller 2
+  JoystickButton A2 = new JoystickButton(Controller2, 1);
+	JoystickButton B2 = new JoystickButton(Controller2, 2);
+	JoystickButton X2 = new JoystickButton(Controller2, 3);
+	JoystickButton Y2 = new JoystickButton(Controller2, 4);
+	JoystickButton LB2 = new JoystickButton(Controller2, 5);
+	JoystickButton RB2 = new JoystickButton(Controller2, 6);
+	JoystickButton BK2 = new JoystickButton(Controller2, 7);
+	JoystickButton ST2 = new JoystickButton(Controller2, 8);
+  JoystickButton LS2 = new JoystickButton(Controller2, 9);
+	JoystickButton RS2 = new JoystickButton(Controller2, 10);
 
   public RobotContainer() {
     configureButtonBindings();
@@ -52,15 +75,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Grab the hatch when the 'A' button is pressed.
-    //new XboxController(0).getAButton(new GrabHatch(m_hatchSubsystem));
-    // Release the hatch when the 'B' button is pressed.
-    //new XboxController(0).getBButton(new ReleaseHatch(m_hatchSubsystem));
-    // While holding the shoulder button, drive at half speed
-    new JoystickButton(Controller, 1)
-    .whenPressed(new GrabHatch(m_hatchSubsystem));
-    new JoystickButton(Controller, 2)
-    .whenPressed(new ReleaseHatch(m_hatchSubsystem));
+    A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
+    A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
+
+
 
   }
 

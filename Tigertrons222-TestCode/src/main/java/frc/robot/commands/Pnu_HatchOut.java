@@ -14,8 +14,8 @@ import frc.robot.subsystems.HatchSubsystem;
 /**
  * A command that releases the hatch.
  */
-public class ReleaseHatch extends InstantCommand {
-  public ReleaseHatch(HatchSubsystem subsystem) {
+public class Pnu_HatchOut extends InstantCommand {
+  public Pnu_HatchOut(HatchSubsystem subsystem) {
     super(subsystem::releaseHatch, subsystem);
   }
 }

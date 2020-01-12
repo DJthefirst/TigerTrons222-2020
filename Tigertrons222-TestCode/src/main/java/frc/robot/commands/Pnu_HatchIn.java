@@ -9,11 +9,11 @@ import frc.robot.subsystems.HatchSubsystem;
  * pedagogical purposes.  Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class GrabHatch extends CommandBase {
+public class Pnu_HatchIn extends CommandBase {
   // The subsystem the command runs on
   private final HatchSubsystem m_hatchSubsystem;
 
-  public GrabHatch(HatchSubsystem subsystem) {
+  public Pnu_HatchIn(HatchSubsystem subsystem) {
     m_hatchSubsystem = subsystem;
     addRequirements(m_hatchSubsystem);
   }
