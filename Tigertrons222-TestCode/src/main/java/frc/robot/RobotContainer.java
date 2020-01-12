@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.commands.SparyZoomZoom;
 import frc.robot.subsystems.Drivetrain;
@@ -15,6 +16,7 @@ import frc.robot.subsystems.HatchSubsystem;
 import frc.robot.subsystems.SparyDeMax;
 import frc.robot.commands.Pnu_HatchIn;
 import frc.robot.commands.Pnu_HatchOut;
+import frc.robot.commands.SparyStaySpeed;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -32,6 +34,7 @@ public class RobotContainer {
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
   private final SparyZoomZoom m_drive_sparky = new SparyZoomZoom(m_spark);
+  private final SparyStaySpeed m_drive_sparkyPID = new SparyStaySpeed(m_spark);
 
   private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
 
@@ -77,7 +80,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
     A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
-
+    B1.whileHeld(new SparyStaySpeed(m_spark));
 
 
   }

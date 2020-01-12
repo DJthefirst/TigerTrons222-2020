@@ -1,9 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.SparyDeMax;
-import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class SparyZoomZoom extends CommandBase {
@@ -23,8 +21,9 @@ public class SparyZoomZoom extends CommandBase {
   @Override
   public void execute() {
   
-  double turnSpeed = RobotContainer.Controller.getRawAxis(3);
-  
+  //double turnSpeed = RobotContainer.Controller.getRawAxis(3);
+  double turnSpeed = .1;
+
   m_subsystem.turn(turnSpeed);
   System.out.println(m_subsystem.getDriveEncoder().getVelocity());
   }

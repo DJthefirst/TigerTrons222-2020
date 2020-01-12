@@ -17,14 +17,12 @@ public class SparyStaySpeed extends CommandBase {
   @Override
   public void initialize() {
   }
-
+  double point = 600;
   
   @Override
   public void execute() {
-  
-  double turnSpeed = RobotContainer.Controller.getRawAxis(3);
-  
-  m_subsystem.turn(turnSpeed);
+
+  m_subsystem.turnPID(point);
   System.out.println(m_subsystem.getDriveEncoder().getVelocity());
   }
 
