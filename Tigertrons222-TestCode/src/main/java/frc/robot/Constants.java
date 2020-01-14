@@ -15,5 +15,13 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
+public final class Constants { 
+    
+  public static final class HatchConstants 
+  {
+    public static final int kHatchSolenoidModule = 0;
+    public static final int[] kHatchSolenoidPorts = new int[]{3, 4};
+  }
+
+  public static final Gains spary_kGains = new Gains(5e-5, 1e-6, 0, 0, 0, -1, 1, 4200);
 }

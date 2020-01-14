@@ -8,9 +8,17 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+
 import frc.robot.commands.Drive_Arcade;
+import frc.robot.commands.SparyZoomZoom;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.HatchSubsystem;
+import frc.robot.subsystems.SparyDeMax;
+import frc.robot.commands.Pnu_HatchIn;
+import frc.robot.commands.Pnu_HatchOut;
+import frc.robot.commands.SparyStaySpeed;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 /**
@@ -22,17 +30,59 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain m_drivetrain = new Drivetrain();
+  private final SparyDeMax m_spark = new SparyDeMax();
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
+  private final SparyZoomZoom m_drive_sparky = new SparyZoomZoom(m_spark);
+  private final SparyStaySpeed m_drive_sparkyPID = new SparyStaySpeed(m_spark);
+
+  private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
 
   public static final XboxController Controller = new XboxController(0);
-	public static final XboxController Controller2 = new XboxController(1);
+  public static final XboxController Controller2 = new XboxController(1);
+  
+  //Controller 1
+  JoystickButton A1 = new JoystickButton(Controller, 1);
+	JoystickButton B1 = new JoystickButton(Controller, 2);
+	JoystickButton X1 = new JoystickButton(Controller, 3);
+	JoystickButton Y1 = new JoystickButton(Controller, 4);
+	JoystickButton LB1 = new JoystickButton(Controller, 5);
+	JoystickButton RB1 = new JoystickButton(Controller, 6);
+	JoystickButton BK1 = new JoystickButton(Controller, 7);
+	JoystickButton ST1 = new JoystickButton(Controller, 8);
+  JoystickButton LS1 = new JoystickButton(Controller, 9);
+	JoystickButton RS1 = new JoystickButton(Controller, 10);
 
+	//Controller 2
+  JoystickButton A2 = new JoystickButton(Controller2, 1);
+	JoystickButton B2 = new JoystickButton(Controller2, 2);
+	JoystickButton X2 = new JoystickButton(Controller2, 3);
+	JoystickButton Y2 = new JoystickButton(Controller2, 4);
+	JoystickButton LB2 = new JoystickButton(Controller2, 5);
+	JoystickButton RB2 = new JoystickButton(Controller2, 6);
+	JoystickButton BK2 = new JoystickButton(Controller2, 7);
+	JoystickButton ST2 = new JoystickButton(Controller2, 8);
+  JoystickButton LS2 = new JoystickButton(Controller2, 9);
+	JoystickButton RS2 = new JoystickButton(Controller2, 10);
 
   public RobotContainer() {
-
+    configureButtonBindings();
 
     m_drivetrain.setDefaultCommand(m_drive_arcade);
+    m_spark.setDefaultCommand(m_drive_sparky);
+  }
+  /**
+   * Use this method to define your button->command mappings.  Buttons can be created by
+   * instantiating a {@link GenericHID} or one of its subclasses ({@link
+   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
+   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   */
+  private void configureButtonBindings() {
+    A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
+    A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
+    B1.whileHeld(new SparyStaySpeed(m_spark));
+
+
   }
 
   /**
