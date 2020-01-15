@@ -1,8 +1,6 @@
 package frc.robot.commands;
 
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.SparyDeMax;
-import com.revrobotics.CANPIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class SparyStaySpeed extends CommandBase {
