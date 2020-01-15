@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.SparyDeMax;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
