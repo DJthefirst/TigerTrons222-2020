@@ -4,9 +4,13 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+<<<<<<< HEAD
+//test main computer"
+=======
 
 //this is a test
 
+>>>>>>> 8c76c945be667957ba9101f935c067e8b348f99e
 package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
