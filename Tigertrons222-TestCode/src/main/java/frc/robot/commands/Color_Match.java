@@ -42,15 +42,15 @@ public class Color_Match extends CommandBase {
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
     if (match.color == kBlueTarget) {
-        System.out.println("Blue");
+        //System.out.println("Blue");
     } else if (match.color == kRedTarget) {
-        System.out.println("Red");
+        //System.out.println("Red");
     } else if (match.color == kGreenTarget) {
-        System.out.println("Green");
+        //System.out.println("Green");
     } else if (match.color == kYellowTarget) {
-        System.out.println("Yellow");
+        //System.out.println("Yellow");
     } else {
-        System.out.println("Unknown");
+        //System.out.println("Unknown");
     }
 
 

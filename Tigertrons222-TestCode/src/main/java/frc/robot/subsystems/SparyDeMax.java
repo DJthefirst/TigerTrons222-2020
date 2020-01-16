@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -13,6 +14,7 @@ public class SparyDeMax extends SubsystemBase {
 
     CANSparkMax SparkyMax = new CANSparkMax(8, MotorType.kBrushless);
     CANEncoder encoder = new CANEncoder(SparkyMax);
+    Encoder Testencode = new Encoder(null, null);
     private CANPIDController m_sparypidController = new CANPIDController(SparkyMax);
 
     
