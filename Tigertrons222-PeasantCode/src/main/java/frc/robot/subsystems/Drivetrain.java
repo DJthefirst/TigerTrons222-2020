@@ -44,4 +44,7 @@ public void arcadeDrive (double moveSpeed, double rotateSpeed)
 {
     differentialDrive.arcadeDrive(moveSpeed,rotateSpeed);
 }
+
+public void motorsub(double rotateSpeed) {
+}
 }
