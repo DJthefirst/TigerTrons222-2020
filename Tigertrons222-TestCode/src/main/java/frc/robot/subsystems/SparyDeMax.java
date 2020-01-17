@@ -14,7 +14,7 @@ public class SparyDeMax extends SubsystemBase {
 
     CANSparkMax SparkyMax = new CANSparkMax(8, MotorType.kBrushless);
     CANEncoder encoder = new CANEncoder(SparkyMax);
-    Encoder Testencode = new Encoder(null, null);
+    Encoder Testencoder = new Encoder(0, 1, 2);
     private CANPIDController m_sparypidController = new CANPIDController(SparkyMax);
 
     
@@ -22,7 +22,7 @@ public class SparyDeMax extends SubsystemBase {
 
 public SparyDeMax(){
 
-
+    Testencoder.reset();
     m_sparypidController.setP(Constants.spary_kGains.kP);
     m_sparypidController.setI(Constants.spary_kGains.kI);
     m_sparypidController.setD(Constants.spary_kGains.kD);
@@ -41,7 +41,15 @@ public void turnPID (double SetPointSpeed)
     m_sparypidController.setReference(SetPointSpeed, ControlType.kVelocity);
 }
 
-public CANEncoder getDriveEncoder() {
+public void readEncoderAUX (){
+    System.out.println("Get :" + Testencoder.get());
+    System.out.println("Dist :" + Testencoder.getDistance());
+    System.out.println("RAW :" + Testencoder.getRaw());
+
+}
+
+
+    public CANEncoder getDriveEncoder() {
     return encoder;
 }
 

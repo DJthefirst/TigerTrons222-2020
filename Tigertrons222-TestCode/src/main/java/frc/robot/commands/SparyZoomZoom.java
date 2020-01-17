@@ -22,9 +22,9 @@ public class SparyZoomZoom extends CommandBase {
   
   //double turnSpeed = RobotContainer.Controller.getRawAxis(3);
   double turnSpeed = .1;
-
-  m_subsystem.turn(turnSpeed);
-  System.out.println(m_subsystem.getDriveEncoder().getVelocity());
+  m_subsystem.readEncoderAUX();
+  //m_subsystem.turn(turnSpeed);
+  //System.out.println(m_subsystem.getDriveEncoder().getVelocity());
   }
 
   @Override

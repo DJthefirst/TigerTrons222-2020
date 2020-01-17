@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Color_Match;
 import frc.robot.commands.Drive_Arcade;
-//import frc.robot.commands.SparyZoomZoom;
+import frc.robot.commands.SparyZoomZoom;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.HatchSubsystem;
@@ -36,7 +36,7 @@ public class RobotContainer {
   private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
-  //private final SparyZoomZoom m_drive_sparky = new SparyZoomZoom(m_spark);
+  private final SparyZoomZoom m_drive_sparky = new SparyZoomZoom(m_spark);
   private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
   
 
@@ -71,7 +71,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_drivetrain.setDefaultCommand(m_drive_arcade);
-    //m_spark.setDefaultCommand(m_drive_sparky);
+    m_spark.setDefaultCommand(m_drive_sparky);
     m_colorSubsystem.setDefaultCommand(m_colormatch);
   }
   /**
