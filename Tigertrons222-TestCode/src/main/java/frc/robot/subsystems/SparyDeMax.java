@@ -50,13 +50,13 @@ public void readEncoderAUX (){
 }
 
 public void resetEncoderDrive (){
-    Testencoder.reset();
+    //Testencoder.reset();
 }
 
 
-    public CANEncoder getDriveEncoder() {
-    return encoder;
-}
+    //public CANEncoder getDriveEncoder() {
+    //return encoder;
+//}
 
 
 
