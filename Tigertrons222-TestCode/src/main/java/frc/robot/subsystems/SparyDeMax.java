@@ -23,7 +23,6 @@ public class SparyDeMax extends SubsystemBase {
 
 public SparyDeMax(){
 
-    Testencoder.reset();
     m_sparypidController.setP(Constants.spary_kGains.kP);
     m_sparypidController.setI(Constants.spary_kGains.kI);
     m_sparypidController.setD(Constants.spary_kGains.kD);
@@ -47,6 +46,10 @@ public void readEncoderAUX (){
     //System.out.println("Dist :" + Testencoder.getDistance());
     System.out.println("Position :" + Testencoder.getPositionOffset());
 
+}
+
+public void resetEncoderDrive (){
+    Testencoder.reset();
 }
 
 
