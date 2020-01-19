@@ -43,8 +43,9 @@ public void turnPID (double SetPointSpeed)
 }
 
 public void readEncoderAUX (){
-    System.out.println("Get :" + Testencoder.get());
-    System.out.println("Dist :" + Testencoder.getDistance());
+    //System.out.println("Get :" + Testencoder.get());
+    //System.out.println("Dist :" + Testencoder.getDistance());
+    System.out.println("Position :" + Testencoder.getPositionOffset());
 
 }
 
