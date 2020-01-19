@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class motorsub extends SubsystemBase {
 
-    CANSparkMax mChickyChickyNugNug = new CANSparkMax(8,MotorType.kBrushless);
+    CANSparkMax mChickyChickyNugNug = new CANSparkMax(1,MotorType.kBrushless);
     // CANSparkMax leftSlave2SparkMax = new CANSparkMax(2,MotorType.kBrushless);
     // CANSparkMax leftSlave3SparkMax = new CANSparkMax(3,MotorType.kBrushless);
     // CANSparkMax rightMaster1SparkMax = new CANSparkMax(4,MotorType.kBrushless);
@@ -22,7 +22,7 @@ public class motorsub extends SubsystemBase {
 
 }
 
-public void motorspinner (final double rotateSpeed)
+public void motorspinner (double rotateSpeed)
 {
 
 	mChickyChickyNugNug.set(rotateSpeed);
