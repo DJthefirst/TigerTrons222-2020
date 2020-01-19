@@ -10,14 +10,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Color_Match;
 import frc.robot.commands.Drive_Arcade;
-import frc.robot.commands.SparyZoomZoom;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.HatchSubsystem;
-import frc.robot.subsystems.SparyDeMax;
+import frc.robot.subsystems.SparkMaxTest;
 import frc.robot.commands.Pnu_HatchIn;
 import frc.robot.commands.Pnu_HatchOut;
-import frc.robot.commands.SparyStaySpeed;
+import frc.robot.commands.SparkMax_DefaultTest;
+import frc.robot.commands.SparkMax_PIDTest;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -31,12 +31,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain m_drivetrain = new Drivetrain();
-  private final SparyDeMax m_spark = new SparyDeMax();
+  private final SparkMaxTest m_sparkTest = new SparkMaxTest();
   private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
   private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
-  private final SparyZoomZoom m_drive_sparky = new SparyZoomZoom(m_spark);
+  private final SparkMax_DefaultTest m_drive_sparky = new SparkMax_DefaultTest(m_sparkTest);
   private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
   
 
@@ -71,7 +71,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_drivetrain.setDefaultCommand(m_drive_arcade);
-    m_spark.setDefaultCommand(m_drive_sparky);
+    m_sparkTest.setDefaultCommand(m_drive_sparky);
     m_colorSubsystem.setDefaultCommand(m_colormatch);
   }
   /**
@@ -83,7 +83,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
     A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
-    B1.whileHeld(new SparyStaySpeed(m_spark));
+    B1.whileHeld(new SparkMax_PIDTest(m_sparkTest));
 
 
   }

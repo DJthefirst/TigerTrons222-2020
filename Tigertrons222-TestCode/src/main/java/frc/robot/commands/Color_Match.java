@@ -52,9 +52,6 @@ public class Color_Match extends CommandBase {
     } else {
         //System.out.println("Unknown");
     }
-
-
-
   }
 
   @Override
