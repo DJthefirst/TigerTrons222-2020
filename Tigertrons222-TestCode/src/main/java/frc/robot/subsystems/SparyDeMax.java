@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,8 +15,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class SparyDeMax extends SubsystemBase {
 
     CANSparkMax SparkyMax = new CANSparkMax(8, MotorType.kBrushless);
-    CANEncoder encoder = new CANEncoder(SparkyMax);
-    DutyCycleEncoder Testencoder = new DutyCycleEncoder(0);
+    //CANEncoder encoder = new CANEncoder(SparkyMax);
+    DigitalInput Testencoder= new DigitalInput(0);
     private CANPIDController m_sparypidController = new CANPIDController(SparkyMax);
 
     
@@ -44,7 +45,7 @@ public void turnPID (double SetPointSpeed)
 public void readEncoderAUX (){
     System.out.println("Get :" + Testencoder.get());
     //System.out.println("Dist :" + Testencoder.getDistance());
-    System.out.println("Position :" + Testencoder.getPositionOffset());
+    //System.out.println("Position :" + Testencoder.());
 
 }
 
