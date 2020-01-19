@@ -18,9 +18,9 @@ import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.kReverse;
  * A hatch mechanism actuated by a single {@link DoubleSolenoid}.
  */
 public class HatchSubsystem extends SubsystemBase {
-  private final DoubleSolenoid m_hatchSolenoid =
-      new DoubleSolenoid(HatchConstants.kHatchSolenoidModule, HatchConstants.kHatchSolenoidPorts[0],
-                         HatchConstants.kHatchSolenoidPorts[1]);
+  private final DoubleSolenoid m_hatchSolenoid = new DoubleSolenoid(HatchConstants.kHatchSolenoidModule, 
+    HatchConstants.kHatchSolenoidPorts[0],
+    HatchConstants.kHatchSolenoidPorts[1]);
 
   /**
    * Grabs the hatch.
