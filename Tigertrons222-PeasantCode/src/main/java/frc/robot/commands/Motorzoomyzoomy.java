@@ -24,7 +24,7 @@ public class Motorzoomyzoomy extends CommandBase {
   //double moveSpeed = -RobotContainer.Controller.getRawAxis(1);
   //double rotateSpeed = RobotContainer.Controller.getRawAxis(0);
 
-  final double rotateSpeed = 0.2;
+  final double rotateSpeed = 0.0;
   
   m_subsystem.motorspinner(rotateSpeed);
   
