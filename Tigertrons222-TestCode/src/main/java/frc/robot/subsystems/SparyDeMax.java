@@ -15,7 +15,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class SparyDeMax extends SubsystemBase {
 
     CANSparkMax SparkyMax = new CANSparkMax(8, MotorType.kBrushless);
-    //CANEncoder encoder = new CANEncoder(SparkyMax);
+    CANEncoder encoder = new CANEncoder(SparkyMax);
     DigitalInput Testencoder= new DigitalInput(0);
     private CANPIDController m_sparypidController = new CANPIDController(SparkyMax);
 
@@ -54,9 +54,9 @@ public void resetEncoderDrive (){
 }
 
 
-    //public CANEncoder getDriveEncoder() {
-    //return encoder;
-//}
+    public CANEncoder getDriveEncoder() {
+    return encoder;
+}
 
 
 
