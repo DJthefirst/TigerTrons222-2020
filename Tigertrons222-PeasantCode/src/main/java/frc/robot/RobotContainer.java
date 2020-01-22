@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.commands.Motorzoomyzoomy;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -20,7 +21,7 @@ import frc.robot.commands.Color_Match;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain m_exampleDrivetrain = new Drivetrain();
-  private final motorsub m_motorsubby = new motorsub();
+  public static final motorsub m_motorsubby = new motorsub();
   private final ControlPanelSubsystem m_matchcolor = new ControlPanelSubsystem();
   
   private final Drive_Arcade m_DriveArcade = new Drive_Arcade(m_exampleDrivetrain);
@@ -30,7 +31,7 @@ public class RobotContainer {
   public RobotContainer() {
     
     m_exampleDrivetrain.setDefaultCommand(m_DriveArcade);
-   // m_motorsubby.setDefaultCommand(m_motorspineyspiney);
+    m_motorsubby.setDefaultCommand(m_motorspineyspiney);
     m_matchcolor.setDefaultCommand(m_matchycolor);
     configureButtonBindings();
   }
