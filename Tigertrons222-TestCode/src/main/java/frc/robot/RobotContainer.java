@@ -14,11 +14,17 @@ import frc.robot.commands.Drive_Arcade;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.HatchSubsystem;
+import frc.robot.subsystems.PnuHatchSubsystem;
+import frc.robot.subsystems.PnuShiftSubsystem;
+import frc.robot.subsystems.PnuUnknownSubsystem;
 import frc.robot.subsystems.ShooterWheels;
 import frc.robot.subsystems.SparkMaxTest;
 import frc.robot.commands.Pnu_HatchIn;
 import frc.robot.commands.Pnu_HatchOut;
+import frc.robot.commands.Pnu_ShiftIn;
+import frc.robot.commands.Pnu_ShiftOut;
+import frc.robot.commands.Pnu_UnknownIn;
+import frc.robot.commands.Pnu_UnknownOut;
 import frc.robot.commands.Shooter_SetSpeed;
 import frc.robot.commands.SparkMax_DefaultTest;
 import frc.robot.commands.SparkMax_PIDTest;
@@ -39,7 +45,9 @@ public class RobotContainer {
   public static final ShooterWheels m_shooter = new ShooterWheels();
   private final SparkMaxTest m_sparkTest = new SparkMaxTest();
   private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
-  private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
+  private final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();  
+  private final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();  
+  private final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();  
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
   private final SparkMax_DefaultTest m_drive_sparky = new SparkMax_DefaultTest(m_sparkTest);
@@ -88,6 +96,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
     A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
+    LB1.whenPressed(new Pnu_ShiftOut(m_shift));	
+    LB1.whenReleased(new Pnu_ShiftIn(m_shift));
+    RB1.whenPressed(new Pnu_UnknownOut(m_unknown));	
+    RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
     B1.whileHeld(new SparkMax_PIDTest(m_sparkTest));
     X1.whileHeld(new Shooter_SetSpeed(500, 500));
     Y1.whileHeld(new Conveyor_Default(m_conveyor));
