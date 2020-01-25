@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DutyCycleEncoder;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -11,19 +9,16 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class SparyDeMax extends SubsystemBase {
+public class SparkMaxTest extends SubsystemBase {
 
     CANSparkMax SparkyMax = new CANSparkMax(8, MotorType.kBrushless);
-    CANEncoder encoder = new CANEncoder(SparkyMax);
-    DutyCycleEncoder Testencoder = new DutyCycleEncoder(0);
+    CANEncoder SparkCANEncoder = new CANEncoder(SparkyMax);
+    //DigitalInput SparkEncoderInput = new DigitalInput(0);
+    //DutyCycle SparkEncoder = new DutyCycle(SparkEncoderInput);
     private CANPIDController m_sparypidController = new CANPIDController(SparkyMax);
 
-    
+    public SparkMaxTest() {
 
-
-public SparyDeMax(){
-
-    Testencoder.reset();
     m_sparypidController.setP(Constants.spary_kGains.kP);
     m_sparypidController.setI(Constants.spary_kGains.kI);
     m_sparypidController.setD(Constants.spary_kGains.kD);
@@ -43,14 +38,12 @@ public void turnPID (double SetPointSpeed)
 }
 
 public void readEncoderAUX (){
-    System.out.println("Get :" + Testencoder.get());
-    System.out.println("Dist :" + Testencoder.getDistance());
+    //System.out.println("Get :" + (SparkEncoder.getOutput()*360));
 
 }
 
-
     public CANEncoder getDriveEncoder() {
-    return encoder;
+    return SparkCANEncoder;
 }
 
 

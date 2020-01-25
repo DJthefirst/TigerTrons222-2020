@@ -1,12 +1,12 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.SparyDeMax;
+import frc.robot.subsystems.SparkMaxTest;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class SparyZoomZoom extends CommandBase {
-    private final SparyDeMax m_subsystem;
+public class SparkMax_DefaultTest extends CommandBase {
+  private final SparkMaxTest m_subsystem;
 
-    public SparyZoomZoom(SparyDeMax subsystem) {
+  public SparkMax_DefaultTest(SparkMaxTest subsystem) {
     m_subsystem = subsystem;
 
     addRequirements(m_subsystem);
@@ -21,7 +21,7 @@ public class SparyZoomZoom extends CommandBase {
   public void execute() {
   
   //double turnSpeed = RobotContainer.Controller.getRawAxis(3);
-  double turnSpeed = .1;
+  //double turnSpeed = .1;
   m_subsystem.readEncoderAUX();
   //m_subsystem.turn(turnSpeed);
   //System.out.println(m_subsystem.getDriveEncoder().getVelocity());

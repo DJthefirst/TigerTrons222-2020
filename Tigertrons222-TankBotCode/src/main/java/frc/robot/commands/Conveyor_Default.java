@@ -1,12 +1,12 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.SparyDeMax;
+import frc.robot.subsystems.Conveyor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class SparyStaySpeed extends CommandBase {
-    private final SparyDeMax m_subsystem;
+public class Conveyor_Default extends CommandBase {
+  private final Conveyor m_subsystem;
 
-    public SparyStaySpeed(SparyDeMax subsystem) {
+  public Conveyor_Default(Conveyor subsystem) {
     m_subsystem = subsystem;
 
     addRequirements(m_subsystem);
@@ -15,17 +15,17 @@ public class SparyStaySpeed extends CommandBase {
   @Override
   public void initialize() {
   }
-  double point = 600;
+
   
   @Override
   public void execute() {
+    m_subsystem.turnPID(1000);
 
-  m_subsystem.turnPID(point);
-  System.out.println(m_subsystem.getDriveEncoder().getVelocity());
   }
 
   @Override
   public void end(boolean interrupted) {
+    m_subsystem.turnPID(0);
   }
 
   

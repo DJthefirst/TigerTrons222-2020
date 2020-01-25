@@ -9,15 +9,25 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Color_Match;
+import frc.robot.commands.Conveyor_Default;
 import frc.robot.commands.Drive_Arcade;
-import frc.robot.commands.SparyZoomZoom;
 import frc.robot.subsystems.ControlPanelSubsystem;
+import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.HatchSubsystem;
-import frc.robot.subsystems.SparyDeMax;
+import frc.robot.subsystems.PnuHatchSubsystem;
+import frc.robot.subsystems.PnuShiftSubsystem;
+import frc.robot.subsystems.PnuUnknownSubsystem;
+import frc.robot.subsystems.ShooterWheels;
+import frc.robot.subsystems.SparkMaxTest;
 import frc.robot.commands.Pnu_HatchIn;
 import frc.robot.commands.Pnu_HatchOut;
-import frc.robot.commands.SparyStaySpeed;
+import frc.robot.commands.Pnu_ShiftIn;
+import frc.robot.commands.Pnu_ShiftOut;
+import frc.robot.commands.Pnu_UnknownIn;
+import frc.robot.commands.Pnu_UnknownOut;
+import frc.robot.commands.Shooter_SetSpeed;
+import frc.robot.commands.SparkMax_DefaultTest;
+import frc.robot.commands.SparkMax_PIDTest;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -30,15 +40,18 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Drivetrain m_drivetrain = new Drivetrain();
-  private final SparyDeMax m_spark = new SparyDeMax();
+  public static final Drivetrain m_drivetrain = new Drivetrain();
+  public static final Conveyor m_conveyor= new Conveyor();
+  public static final ShooterWheels m_shooter = new ShooterWheels();
+  private final SparkMaxTest m_sparkTest = new SparkMaxTest();
   private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
-  private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
+  private final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();  
+  private final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();  
+  private final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();  
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
-  private final SparyZoomZoom m_drive_sparky = new SparyZoomZoom(m_spark);
+  private final SparkMax_DefaultTest m_drive_sparky = new SparkMax_DefaultTest(m_sparkTest);
   private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
-  
 
   public static final XboxController Controller = new XboxController(0);
   public static final XboxController Controller2 = new XboxController(1);
@@ -71,7 +84,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_drivetrain.setDefaultCommand(m_drive_arcade);
-    m_spark.setDefaultCommand(m_drive_sparky);
+    m_sparkTest.setDefaultCommand(m_drive_sparky);
     m_colorSubsystem.setDefaultCommand(m_colormatch);
   }
   /**
@@ -83,7 +96,13 @@ public class RobotContainer {
   private void configureButtonBindings() {
     A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
     A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
-    B1.whileHeld(new SparyStaySpeed(m_spark));
+    LB1.whenPressed(new Pnu_ShiftOut(m_shift));	
+    LB1.whenReleased(new Pnu_ShiftIn(m_shift));
+    RB1.whenPressed(new Pnu_UnknownOut(m_unknown));	
+    RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
+    B1.whileHeld(new SparkMax_PIDTest(m_sparkTest));
+    X1.whileHeld(new Shooter_SetSpeed(500, 500));
+    Y1.whileHeld(new Conveyor_Default(m_conveyor));
 
 
   }

@@ -4,6 +4,9 @@ package frc.robot.subsystems;
 //import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DutyCycle;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -16,6 +19,11 @@ public class Drivetrain extends SubsystemBase {
     // CANSparkMax rightSlave2SparkMax = new CANSparkMax(5,MotorType.kBrushless);
     // CANSparkMax rightSlave3SparkMax = new CANSparkMax(6,MotorType.kBrushless);
 
+    DigitalInput SparkEncoderInput = new DigitalInput(0);
+    DutyCycle SparkEncoder = new DutyCycle(SparkEncoderInput);
+    DutyCycleEncoder dutyCycleEncodertest = new DutyCycleEncoder(SparkEncoderInput);
+
+
     WPI_TalonSRX leftMasterTalon = new WPI_TalonSRX(4);
 	WPI_TalonSRX rightMasterTalon = new WPI_TalonSRX(1);
 	
@@ -25,6 +33,7 @@ public class Drivetrain extends SubsystemBase {
 	WPI_TalonSRX rightSlave1Talon = new WPI_TalonSRX(2);
 	WPI_TalonSRX rightSlave2Talon = new WPI_TalonSRX(3);
 
+    //DifferentialDrive differentialDrive = new DifferentialDrive(rightMaster1SparkMax,leftMaster1SparkMax);
     DifferentialDrive differentialDrive = new DifferentialDrive(rightMasterTalon,leftMasterTalon);
 
 public Drivetrain()
@@ -40,8 +49,32 @@ public Drivetrain()
     rightSlave2Talon.follow(rightMasterTalon);
 }
 
+
 public void arcadeDrive (double moveSpeed, double rotateSpeed)
 {
     differentialDrive.arcadeDrive(moveSpeed,rotateSpeed);
+}
+
+
+public void tankDrive(double leftSpeed, double rightSpeed)
+{
+    differentialDrive.tankDrive(leftSpeed,rightSpeed);
+}
+
+
+public double leftEncoderABSPos()
+{
+    double ABSposition = dutyCycleEncodertest.get();
+    System.out.println("PWM :" + ABSposition);
+    return ABSposition;
+
+}
+
+
+public double leftEncoderCurrentPos()
+{
+    double Currentposition = (SparkEncoder.getOutput()*360);
+    System.out.println("Get :" + Currentposition);
+    return Currentposition;
 }
 }
