@@ -9,13 +9,17 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Color_Match;
+import frc.robot.commands.Conveyor_Default;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.subsystems.ControlPanelSubsystem;
+import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.HatchSubsystem;
+import frc.robot.subsystems.ShooterWheels;
 import frc.robot.subsystems.SparkMaxTest;
 import frc.robot.commands.Pnu_HatchIn;
 import frc.robot.commands.Pnu_HatchOut;
+import frc.robot.commands.Shooter_SetSpeed;
 import frc.robot.commands.SparkMax_DefaultTest;
 import frc.robot.commands.SparkMax_PIDTest;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -31,6 +35,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final Drivetrain m_drivetrain = new Drivetrain();
+  public static final Conveyor m_conveyor= new Conveyor();
+  public static final ShooterWheels m_shooter = new ShooterWheels();
   private final SparkMaxTest m_sparkTest = new SparkMaxTest();
   private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
   private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
@@ -38,7 +44,6 @@ public class RobotContainer {
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
   private final SparkMax_DefaultTest m_drive_sparky = new SparkMax_DefaultTest(m_sparkTest);
   private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
-  
 
   public static final XboxController Controller = new XboxController(0);
   public static final XboxController Controller2 = new XboxController(1);
@@ -84,6 +89,8 @@ public class RobotContainer {
     A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
     A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
     B1.whileHeld(new SparkMax_PIDTest(m_sparkTest));
+    X1.whileHeld(new Shooter_SetSpeed(500, 500));
+    Y1.whileHeld(new Conveyor_Default(m_conveyor));
 
 
   }
