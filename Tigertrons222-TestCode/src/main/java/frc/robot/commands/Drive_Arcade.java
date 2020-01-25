@@ -25,6 +25,7 @@ public class Drive_Arcade extends CommandBase {
   double rotateSpeed = RobotContainer.Controller.getRawAxis(0);
   
   m_subsystem.arcadeDrive(moveSpeed,rotateSpeed);
+  m_subsystem.leftEncoderABSPos();
   }
 
   @Override

@@ -15,8 +15,8 @@ public class SparkMaxTest extends SubsystemBase {
 
     CANSparkMax SparkyMax = new CANSparkMax(8, MotorType.kBrushless);
     CANEncoder SparkCANEncoder = new CANEncoder(SparkyMax);
-    DigitalInput SparkEncoderInput = new DigitalInput(0);
-    DutyCycle SparkEncoder = new DutyCycle(SparkEncoderInput);
+    //DigitalInput SparkEncoderInput = new DigitalInput(0);
+    //DutyCycle SparkEncoder = new DutyCycle(SparkEncoderInput);
     private CANPIDController m_sparypidController = new CANPIDController(SparkyMax);
 
     public SparkMaxTest() {
@@ -40,7 +40,7 @@ public void turnPID (double SetPointSpeed)
 }
 
 public void readEncoderAUX (){
-    System.out.println("Get :" + (SparkEncoder.getOutput()*360));
+    //System.out.println("Get :" + (SparkEncoder.getOutput()*360));
 
 }
 

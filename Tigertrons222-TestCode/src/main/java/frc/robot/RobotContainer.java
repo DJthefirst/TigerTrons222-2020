@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Drivetrain m_drivetrain = new Drivetrain();
+  public static final Drivetrain m_drivetrain = new Drivetrain();
   private final SparkMaxTest m_sparkTest = new SparkMaxTest();
   private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
   private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
