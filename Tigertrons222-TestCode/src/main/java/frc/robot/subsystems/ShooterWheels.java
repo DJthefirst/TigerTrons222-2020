@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
+
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
@@ -38,6 +39,7 @@ public ShooterWheels() {
 public void turn (double spinSpeed){
     ShooterMotorLeft.set(spinSpeed);
 }
+
 
 
 public void spinSpeedPID (double SetPointSpeedLeft,double SetPointSpeedRight){

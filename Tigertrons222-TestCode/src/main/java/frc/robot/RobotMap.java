@@ -22,7 +22,7 @@ public class RobotMap {
 	//Encoders
 	public static final int DRIVETRAIN_ENCODER_L = 0;
 	public static final int DRIVETRAIN_ENCODER_R = 1;
-  public static final int ARM_ENCODER = 2;
+  	public static final int ARM_ENCODER = 2;
 
 	//Gyro
 
@@ -34,7 +34,7 @@ public class RobotMap {
 	public static final int DRIVER_CONTROLLER2_FOWARD_AXIS = 1;
 	public static final int DRIVER_CONTROLLER2_ROTATE_AXIS = 2;
 
-  //Solenoids
+  	//Solenoids
   	public static final int SHIFT_SOLENOID_MODULE = 0;
 	public static final int SHIFT_SOLENOID_DEPLOY = 7;
   	public static final int SHIFT_SOLENOID_RETRACT = 0;

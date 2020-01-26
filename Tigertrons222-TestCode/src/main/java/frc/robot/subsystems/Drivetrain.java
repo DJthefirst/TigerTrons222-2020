@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.DutyCycle;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
 
@@ -19,19 +20,22 @@ public class Drivetrain extends SubsystemBase {
     // CANSparkMax rightSlave2SparkMax = new CANSparkMax(5,MotorType.kBrushless);
     // CANSparkMax rightSlave3SparkMax = new CANSparkMax(6,MotorType.kBrushless);
 
-    DigitalInput SparkEncoderInput = new DigitalInput(0);
-    DutyCycle SparkEncoder = new DutyCycle(SparkEncoderInput);
-    DutyCycleEncoder dutyCycleEncodertest = new DutyCycleEncoder(SparkEncoderInput);
+    DigitalInput DrivetrainEncoderInputLeft = new DigitalInput(RobotMap.DRIVETRAIN_ENCODER_L);
+    DutyCycle DrivetrainEncoderLeft = new DutyCycle(DrivetrainEncoderInputLeft);
+    DutyCycleEncoder dutyCycleDrivetrainEncoderLeft = new DutyCycleEncoder(DrivetrainEncoderInputLeft);
+    DigitalInput DrivetrainEncoderInputRight = new DigitalInput(RobotMap.DRIVETRAIN_ENCODER_R);
+    DutyCycle DrivetrainEncoderRight = new DutyCycle(DrivetrainEncoderInputRight);
+    DutyCycleEncoder dutyCycleDrivetrainEncoderRight = new DutyCycleEncoder(DrivetrainEncoderInputRight);
 
 
-    WPI_TalonSRX leftMasterTalon = new WPI_TalonSRX(4);
-	WPI_TalonSRX rightMasterTalon = new WPI_TalonSRX(1);
+    WPI_TalonSRX leftMasterTalon = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_Master_SPARKMAX);
+	WPI_TalonSRX rightMasterTalon = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_Master_SPARKMAX);
 	
 	
-	WPI_TalonSRX leftSlave1Talon = new WPI_TalonSRX(5);
-	WPI_TalonSRX leftSlave2Talon = new WPI_TalonSRX(6);
-	WPI_TalonSRX rightSlave1Talon = new WPI_TalonSRX(2);
-	WPI_TalonSRX rightSlave2Talon = new WPI_TalonSRX(3);
+	WPI_TalonSRX leftSlave1Talon = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_Slave1_SPARKMAX);
+	WPI_TalonSRX leftSlave2Talon = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_Slave2_SPARKMAX);
+	WPI_TalonSRX rightSlave1Talon = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_Slave1_SPARKMAX);
+	WPI_TalonSRX rightSlave2Talon = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_Slave2_SPARKMAX);
 
     //DifferentialDrive differentialDrive = new DifferentialDrive(rightMaster1SparkMax,leftMaster1SparkMax);
     DifferentialDrive differentialDrive = new DifferentialDrive(rightMasterTalon,leftMasterTalon);
@@ -64,17 +68,30 @@ public void tankDrive(double leftSpeed, double rightSpeed)
 
 public double leftEncoderABSPos()
 {
-    double ABSposition = dutyCycleEncodertest.get();
-    System.out.println("PWM :" + ABSposition);
-    return ABSposition;
-
+    double absPositionLeft = dutyCycleDrivetrainEncoderLeft.get();
+    System.out.println("PWM :" + absPositionLeft);
+    return absPositionLeft;
 }
 
+public double rightEncoderABSPos()
+{
+    double absPositionRight = dutyCycleDrivetrainEncoderRight.get();
+    System.out.println("PWM :" + absPositionRight);
+    return absPositionRight;
+}
 
 public double leftEncoderCurrentPos()
 {
-    double Currentposition = (SparkEncoder.getOutput()*360);
+    double Currentposition = (DrivetrainEncoderLeft.getOutput()*360);
     System.out.println("Get :" + Currentposition);
     return Currentposition;
 }
+
+public double rightEncoderCurrentPos()
+{
+    double Currentposition = (DrivetrainEncoderRight.getOutput()*360);
+    System.out.println("Get :" + Currentposition);
+    return Currentposition;
+}
+
 }

@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.CMD_Intake;
 import frc.robot.commands.Color_Match;
 import frc.robot.commands.Conveyor_Default;
 import frc.robot.commands.Drive_Arcade;
@@ -17,6 +18,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.PnuHatchSubsystem;
 import frc.robot.subsystems.PnuShiftSubsystem;
 import frc.robot.subsystems.PnuUnknownSubsystem;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.ShooterWheels;
 import frc.robot.subsystems.SparkMaxTest;
 import frc.robot.commands.Pnu_HatchIn;
@@ -48,10 +50,12 @@ public class RobotContainer {
   private final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();  
   private final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();  
   private final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();  
+  private final Shooter m_shooterOut = new Shooter();  
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
   private final SparkMax_DefaultTest m_drive_sparky = new SparkMax_DefaultTest(m_sparkTest);
   private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
+  private final CMD_Intake m_intake = new CMD_Intake(m_shooterOut);
 
   public static final XboxController Controller = new XboxController(0);
   public static final XboxController Controller2 = new XboxController(1);
@@ -86,6 +90,7 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(m_drive_arcade);
     m_sparkTest.setDefaultCommand(m_drive_sparky);
     m_colorSubsystem.setDefaultCommand(m_colormatch);
+    m_shooterOut.setDefaultCommand(m_intake);
   }
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
