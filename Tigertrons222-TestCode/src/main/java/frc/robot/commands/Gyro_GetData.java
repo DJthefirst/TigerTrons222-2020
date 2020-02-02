@@ -1,17 +1,15 @@
 package frc.robot.commands;
 
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.ShooterWheels;
+import frc.robot.subsystems.Imu;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Shooter_SetSpeed extends CommandBase {
-  private final ShooterWheels m_subsystem;
+public class Gyro_GetData extends CommandBase {
+    private final Imu m_subsystem;
 
-  double SpeedPoint;
+    public Gyro_GetData(Imu subsystem) {
+    m_subsystem = subsystem;
 
-  public Shooter_SetSpeed(double Speed) {
-    SpeedPoint = Speed;
-    m_subsystem = RobotContainer.m_shooter;
     addRequirements(m_subsystem);
   }
   
@@ -22,13 +20,16 @@ public class Shooter_SetSpeed extends CommandBase {
   
   @Override
   public void execute() {
-    m_subsystem.spinSpeedPID(SpeedPoint);
-
+    double x = RobotContainer.m_drivetrain.rightEncoderCurrentPos();
+    //m_subsystem.getx();
+    //m_subsystem.gety(); 
+    //m_subsystem.getraw();                      
+  
   }
 
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.spinSpeed(0);
+
   }
 
   

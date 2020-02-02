@@ -36,15 +36,15 @@ public class RobotMap {
 
   	//Solenoids
   	public static final int SHIFT_SOLENOID_MODULE = 0;
-	public static final int SHIFT_SOLENOID_DEPLOY = 7;
-  	public static final int SHIFT_SOLENOID_RETRACT = 0;
+	public static final int SHIFT_SOLENOID_DEPLOY = 0;
+  	public static final int SHIFT_SOLENOID_RETRACT = 1;
   	public static final int UNKNOWN1_SOLENOID_MODULE = 0;
-	public static final int UNKNOWN1_SOLENOID_DEPLOY = 6;
-  	public static final int UNKNOWN1_SOLENOID_RETRACT = 1;
+	public static final int UNKNOWN1_SOLENOID_DEPLOY = 2;
+  	public static final int UNKNOWN1_SOLENOID_RETRACT = 3;
   	public static final int UNKNOWN2_SOLENOID_MODULE = 0;
-	public static final int UNKNOWN2_SOLENOID_DEPLOY =2;
-  	public static final int UNKNOWN2_SOLENOID_RETRACT = 5;
+	public static final int UNKNOWN2_SOLENOID_DEPLOY =5;
+  	public static final int UNKNOWN2_SOLENOID_RETRACT = 4;
   	public static final int UNKNOWN3_SOLENOID_MODULE = 0;
-	public static final int UNKNOWN3_SOLENOID_DEPLOY = 4;
-	public static final int UNKNOWN3_SOLENOID_RETRACT = 3;
+	public static final int UNKNOWN3_SOLENOID_DEPLOY = 6;
+	public static final int UNKNOWN3_SOLENOID_RETRACT = 7;
 }

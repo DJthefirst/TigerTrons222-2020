@@ -12,8 +12,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class ShooterWheels extends SubsystemBase {
 
-    CANSparkMax ShooterMotorLeft = new CANSparkMax(9, MotorType.kBrushless);
-    CANSparkMax ShooterMotorRight = new CANSparkMax(10, MotorType.kBrushless);
+    CANSparkMax ShooterMotorLeft = new CANSparkMax(20, MotorType.kBrushless);
+    CANSparkMax ShooterMotorRight = new CANSparkMax(21, MotorType.kBrushless);
     CANEncoder ShooterCANEncoderLeft = new CANEncoder(ShooterMotorLeft);
     CANEncoder ShooterCANEncoderRight = new CANEncoder(ShooterMotorRight);
     private CANPIDController m_shooterpidControllerLeft = new CANPIDController(ShooterMotorLeft);
@@ -36,14 +36,22 @@ public ShooterWheels() {
 }
 
 
-public void turn (double spinSpeed){
+public void spinSpeed (double spinSpeed){
     ShooterMotorLeft.set(spinSpeed);
+    ShooterMotorRight.set(spinSpeed);
+
+}
+
+
+public void spinSpeedPID (double SetPointSpeed){
+    m_shooterpidControllerLeft.setReference(-SetPointSpeed, ControlType.kVelocity);
+    m_shooterpidControllerRight.setReference(SetPointSpeed, ControlType.kVelocity);
 }
 
 
 
-public void spinSpeedPID (double SetPointSpeedLeft,double SetPointSpeedRight){
-    m_shooterpidControllerLeft.setReference(SetPointSpeedLeft, ControlType.kVelocity);
+public void spinSpeedDoublePID (double SetPointSpeedLeft,double SetPointSpeedRight){
+    m_shooterpidControllerLeft.setReference(-SetPointSpeedLeft, ControlType.kVelocity);
     m_shooterpidControllerRight.setReference(SetPointSpeedRight, ControlType.kVelocity);
 }
 

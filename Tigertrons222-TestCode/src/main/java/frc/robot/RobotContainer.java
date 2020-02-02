@@ -7,20 +7,26 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.CMD_Intake;
-import frc.robot.commands.Color_Match;
-import frc.robot.commands.Conveyor_Default;
-import frc.robot.commands.Drive_Arcade;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Imu;
 import frc.robot.subsystems.PnuHatchSubsystem;
 import frc.robot.subsystems.PnuShiftSubsystem;
 import frc.robot.subsystems.PnuUnknownSubsystem;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.ShooterWheels;
 import frc.robot.subsystems.SparkMaxTest;
+
+import frc.robot.commands.Color_Match;
+import frc.robot.commands.Conveyor_Default;
+import frc.robot.commands.Drive_Arcade;
+import frc.robot.commands.Drive_PathFinder;
+import frc.robot.commands.Gyro_GetData;
 import frc.robot.commands.Pnu_HatchIn;
 import frc.robot.commands.Pnu_HatchOut;
 import frc.robot.commands.Pnu_ShiftIn;
@@ -30,9 +36,6 @@ import frc.robot.commands.Pnu_UnknownOut;
 import frc.robot.commands.Shooter_SetSpeed;
 import frc.robot.commands.SparkMax_DefaultTest;
 import frc.robot.commands.SparkMax_PIDTest;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -49,13 +52,14 @@ public class RobotContainer {
   private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
   private final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();  
   private final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();  
-  private final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();  
-  private final Shooter m_shooterOut = new Shooter();  
+  private final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();   
+  private final Imu m_gyro = new Imu();
+
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
   private final SparkMax_DefaultTest m_drive_sparky = new SparkMax_DefaultTest(m_sparkTest);
   private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
-  private final CMD_Intake m_intake = new CMD_Intake(m_shooterOut);
+  private final Gyro_GetData m_gyroget = new Gyro_GetData(m_gyro);
 
   public static final XboxController Controller = new XboxController(0);
   public static final XboxController Controller2 = new XboxController(1);
@@ -90,7 +94,7 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(m_drive_arcade);
     m_sparkTest.setDefaultCommand(m_drive_sparky);
     m_colorSubsystem.setDefaultCommand(m_colormatch);
-    m_shooterOut.setDefaultCommand(m_intake);
+    m_gyro.setDefaultCommand(m_gyroget);
   }
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
@@ -105,9 +109,16 @@ public class RobotContainer {
     LB1.whenReleased(new Pnu_ShiftIn(m_shift));
     RB1.whenPressed(new Pnu_UnknownOut(m_unknown));	
     RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
-    B1.whileHeld(new SparkMax_PIDTest(m_sparkTest));
-    X1.whileHeld(new Shooter_SetSpeed(500, 500));
-    Y1.whileHeld(new Conveyor_Default(m_conveyor));
+    B1.whileHeld(new Drive_PathFinder(m_drivetrain));
+    //B1.whileHeld(new SparkMax_PIDTest(m_sparkTest));
+    //A1.whileHeld(new Shooter_SetSpeed(3000));
+    //B1.whileHeld(new Shooter_SetSpeed(-3000));
+    //X1.whileHeld(new Shooter_SetSpeed(4000));
+    //Y1.whileHeld(new Shooter_SetSpeed(5000));  //4400 sexy 
+    //LB1.whileHeld(new Shooter_SetSpeed(4100));
+    //RB1.whileHeld(new Shooter_SetSpeed(4200));
+//4400 sexy 
+    //Y1.whileHeld(new Conveyor_Default(m_conveyor));
 
 
   }
