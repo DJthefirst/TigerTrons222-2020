@@ -19,7 +19,7 @@ import frc.robot.subsystems.Imu;
 import frc.robot.subsystems.PnuHatchSubsystem;
 import frc.robot.subsystems.PnuShiftSubsystem;
 import frc.robot.subsystems.PnuUnknownSubsystem;
-import frc.robot.subsystems.ShooterWheels;
+import frc.robot.subsystems.Turret;
 
 import frc.robot.commands.Color_Match;
 import frc.robot.commands.Conveyor_Default;
@@ -32,7 +32,7 @@ import frc.robot.commands.Pnu_ShiftIn;
 import frc.robot.commands.Pnu_ShiftOut;
 import frc.robot.commands.Pnu_UnknownIn;
 import frc.robot.commands.Pnu_UnknownOut;
-import frc.robot.commands.Shooter_SetSpeed;
+import frc.robot.commands.Turret_SetSpeed;
 
 
 /**
@@ -45,7 +45,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final Drivetrain m_drivetrain = new Drivetrain();
   public static final Conveyor m_conveyor= new Conveyor();
-  public static final ShooterWheels m_shooter = new ShooterWheels();
+  public static final Turret m_turret = new Turret();
   private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
   private final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();  
   private final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();  
