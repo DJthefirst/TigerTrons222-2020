@@ -35,6 +35,7 @@ import frc.robot.commands.Pnu_ShiftIn;
 import frc.robot.commands.Pnu_ShiftOut;
 import frc.robot.commands.Pnu_UnknownIn;
 import frc.robot.commands.Pnu_UnknownOut;
+import frc.robot.commands.Turret_Rotation;
 import frc.robot.commands.Turret_SetSpeed;
 
 
@@ -88,7 +89,7 @@ public class RobotContainer {
 	JoystickButton ST2 = new JoystickButton(Controller2, 8);
   JoystickButton LS2 = new JoystickButton(Controller2, 9);
 	JoystickButton RS2 = new JoystickButton(Controller2, 10);
-
+ 
   public RobotContainer() {
     configureButtonBindings();
 
@@ -110,8 +111,8 @@ public class RobotContainer {
     LB1.whenReleased(new Pnu_ShiftIn(m_shift));
     RB1.whenPressed(new Pnu_UnknownOut(m_unknown));	
     RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
-    B1.whileHeld(new Drive_PathFinder(m_drivetrain));
-    //B1.whileHeld(new SparkMax_PIDTest(m_sparkTest));
+    //B1.whileHeld(new Drive_PathFinder(m_drivetrain));
+    B1.whileHeld(new Turret_Rotation());
     //A1.whileHeld(new Shooter_SetSpeed(3000));
     //B1.whileHeld(new Shooter_SetSpeed(-3000));
     //X1.whileHeld(new Shooter_SetSpeed(4000));
