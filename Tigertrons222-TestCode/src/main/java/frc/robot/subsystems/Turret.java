@@ -10,7 +10,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class ShooterWheels extends SubsystemBase {
+public class Turret extends SubsystemBase {
 
     CANSparkMax ShooterMotorLeft = new CANSparkMax(20, MotorType.kBrushless);
     CANSparkMax ShooterMotorRight = new CANSparkMax(21, MotorType.kBrushless);
@@ -19,7 +19,7 @@ public class ShooterWheels extends SubsystemBase {
     private CANPIDController m_shooterpidControllerLeft = new CANPIDController(ShooterMotorLeft);
     private CANPIDController m_shooterpidControllerRight = new CANPIDController(ShooterMotorRight);
 
-public ShooterWheels() {
+    public Turret() {
     m_shooterpidControllerLeft.setP(Constants.shooter_kGains.kP);
     m_shooterpidControllerLeft.setI(Constants.shooter_kGains.kI);
     m_shooterpidControllerLeft.setD(Constants.shooter_kGains.kD);

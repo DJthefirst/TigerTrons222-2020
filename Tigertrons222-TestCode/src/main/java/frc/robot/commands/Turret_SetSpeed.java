@@ -1,17 +1,17 @@
 package frc.robot.commands;
 
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.ShooterWheels;
+import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Shooter_SetSpeed extends CommandBase {
-  private final ShooterWheels m_subsystem;
+public class Turret_SetSpeed extends CommandBase {
+  private final Turret m_subsystem;
 
   double SpeedPoint;
 
-  public Shooter_SetSpeed(double Speed) {
+  public Turret_SetSpeed(double Speed) {
     SpeedPoint = Speed;
-    m_subsystem = RobotContainer.m_shooter;
+    m_subsystem = RobotContainer.m_turret;
     addRequirements(m_subsystem);
   }
   
