@@ -1,9 +1,12 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
+import frc.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
@@ -18,6 +21,8 @@ public class Turret extends SubsystemBase {
     CANEncoder ShooterCANEncoderRight = new CANEncoder(ShooterMotorRight);
     private CANPIDController m_shooterpidControllerLeft = new CANPIDController(ShooterMotorLeft);
     private CANPIDController m_shooterpidControllerRight = new CANPIDController(ShooterMotorRight);
+    WPI_TalonSRX turretrotationtalon = new WPI_TalonSRX(RobotMap.TURRET_ROTATION_TALON);
+    AnalogPotentiometer Turretrotationanologencoder = new AnalogPotentiometer(RobotMap.TURRET_ENCODER);
 
     public Turret() {
     m_shooterpidControllerLeft.setP(Constants.shooter_kGains.kP);
@@ -34,14 +39,20 @@ public class Turret extends SubsystemBase {
     m_shooterpidControllerRight.setFF(Constants.shooter_kGains.kFF);
     m_shooterpidControllerRight.setOutputRange(Constants.shooter_kGains.kMinOutput, Constants.shooter_kGains.kMaxOutput);
 }
-
+public double getEncoder(){
+    double Turretposition = Turretrotationanologencoder.get();
+    System.out.println("Turret Pos: " + Turretposition);
+    return Turretposition;
+}
 
 public void spinSpeed (double spinSpeed){
     ShooterMotorLeft.set(spinSpeed);
     ShooterMotorRight.set(spinSpeed);
 
 }
-
+public void rotationspeed (double rotationspeed){
+    turretrotationtalon.set (rotationspeed);
+}
 
 public void spinSpeedPID (double SetPointSpeed){
     m_shooterpidControllerLeft.setReference(-SetPointSpeed, ControlType.kVelocity);
