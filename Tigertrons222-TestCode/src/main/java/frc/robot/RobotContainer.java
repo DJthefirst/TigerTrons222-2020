@@ -20,7 +20,6 @@ import frc.robot.subsystems.PnuHatchSubsystem;
 import frc.robot.subsystems.PnuShiftSubsystem;
 import frc.robot.subsystems.PnuUnknownSubsystem;
 import frc.robot.subsystems.ShooterWheels;
-import frc.robot.subsystems.SparkMaxTest;
 
 import frc.robot.commands.Color_Match;
 import frc.robot.commands.Conveyor_Default;
@@ -34,8 +33,7 @@ import frc.robot.commands.Pnu_ShiftOut;
 import frc.robot.commands.Pnu_UnknownIn;
 import frc.robot.commands.Pnu_UnknownOut;
 import frc.robot.commands.Shooter_SetSpeed;
-import frc.robot.commands.SparkMax_DefaultTest;
-import frc.robot.commands.SparkMax_PIDTest;
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -48,16 +46,14 @@ public class RobotContainer {
   public static final Drivetrain m_drivetrain = new Drivetrain();
   public static final Conveyor m_conveyor= new Conveyor();
   public static final ShooterWheels m_shooter = new ShooterWheels();
-  private final SparkMaxTest m_sparkTest = new SparkMaxTest();
   private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
   private final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();  
   private final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();  
   private final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();   
-  private final Imu m_gyro = new Imu();
+  public static final Imu m_gyro = new Imu();
 
 
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
-  private final SparkMax_DefaultTest m_drive_sparky = new SparkMax_DefaultTest(m_sparkTest);
   private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
   private final Gyro_GetData m_gyroget = new Gyro_GetData(m_gyro);
 
@@ -92,7 +88,6 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_drivetrain.setDefaultCommand(m_drive_arcade);
-    m_sparkTest.setDefaultCommand(m_drive_sparky);
     m_colorSubsystem.setDefaultCommand(m_colormatch);
     m_gyro.setDefaultCommand(m_gyroget);
   }

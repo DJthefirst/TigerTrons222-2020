@@ -16,7 +16,12 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants { 
+
+  //PIDs
   public static final Gains spary_kGains = new Gains(5e-5, 1e-6, 0, 0, 0, -1, 1, 4200);
   public static final Gains shooter_kGains = new Gains(4e-4, 0, 3e-3, 0, 0, -1, 1, 4200);
   public static final Gains conveyor_kGains = new Gains(5e-5, 1e-6, 0, 0, 0, -1, 1, 4200);
+
+  //Constant Speeds
+  public static final double conveyor_speed = 0.85;
 }

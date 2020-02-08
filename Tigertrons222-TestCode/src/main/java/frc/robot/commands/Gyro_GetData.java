@@ -20,10 +20,12 @@ public class Gyro_GetData extends CommandBase {
   
   @Override
   public void execute() {
-    double x = RobotContainer.m_drivetrain.rightEncoderCurrentPos();
+    //double x = RobotContainer.m_drivetrain.rightEncoderCurrentPos();
     //m_subsystem.getx();
     //m_subsystem.gety(); 
-    //m_subsystem.getraw();                      
+    //m_subsystem.getraw();   
+    RobotContainer.m_drivetrain.rightEncoderCurrentPos();
+    RobotContainer.m_drivetrain.leftEncoderCurrentPos();                   
   
   }
 

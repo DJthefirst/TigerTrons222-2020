@@ -23,6 +23,15 @@ public class Drive_Arcade extends CommandBase {
   
   double moveSpeed = -RobotContainer.Controller.getRawAxis(1);
   double rotateSpeed = RobotContainer.Controller.getRawAxis(0);
+
+  if (Math.abs(moveSpeed) < 0.13) {
+    // within 10% joystick, make it zero 
+  moveSpeed = 0;
+  }
+  if (Math.abs(rotateSpeed) < 0.13) {
+    // within 10% joystick, make it zero 
+    rotateSpeed = 0;
+  }
   
   m_subsystem.arcadeDrive(moveSpeed,rotateSpeed);
   m_subsystem.leftEncoderABSPos();

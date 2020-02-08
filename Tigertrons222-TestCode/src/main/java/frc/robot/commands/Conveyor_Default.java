@@ -19,13 +19,12 @@ public class Conveyor_Default extends CommandBase {
   
   @Override
   public void execute() {
-    m_subsystem.turnPID(1000);
-
+    m_subsystem.turn();
   }
 
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.turnPID(0);
+    
   }
 
   

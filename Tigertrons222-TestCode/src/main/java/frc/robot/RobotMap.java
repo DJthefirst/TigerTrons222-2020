@@ -11,8 +11,8 @@ public class RobotMap {
 	public static final int DRIVETRAIN_LEFT_Slave2_SPARKMAX = 6;
 
 	//Talons
-	public static final int ARM_MOTOR_Master_TALON = 8;
-	public static final int ARM_MOTOR_Slave_TALON = 9;
+	public static final int CONVEYOR_MOTOR_TALON = 8;
+	public static final int ARM_MOTOR_TALON = 9;
 	public static final int Climb_MOTOR_Master_TALON = 7;
 	public static final int Climb_MOTOR_Slave_TALON = 10;
 	public static final int Intake_MOTOR_TALON = 12;
@@ -23,8 +23,6 @@ public class RobotMap {
 	public static final int DRIVETRAIN_ENCODER_L = 0;
 	public static final int DRIVETRAIN_ENCODER_R = 1;
   	public static final int ARM_ENCODER = 2;
-
-	//Gyro
 
 	//Controllers
 	public static final int XBOX_DRIVER_CONTROLLER1 = 0;

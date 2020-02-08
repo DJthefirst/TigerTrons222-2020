@@ -25,9 +25,9 @@ public class Imu extends SubsystemBase {
     m_imu.calibrate();
   }
 
-  public double getraw() {
-    double raw = m_imu.getAngle();
-    return raw; 
+  public double getangle() {
+    double angle = m_imu.getAngle();
+    return angle; 
     //System.out.println("RAW : "+ raw);
   }
 
