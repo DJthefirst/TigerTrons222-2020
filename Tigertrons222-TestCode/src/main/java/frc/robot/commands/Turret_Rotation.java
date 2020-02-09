@@ -24,23 +24,13 @@ public class Turret_Rotation extends CommandBase {
   
   @Override
   public void execute() {
-    final double turretencoder = m_subsystem.getEncoder();
 
-    // if (turretencoder < (AngleTarget- (Constants.turretAngleError / 2))) {
-    //   SpeedPoint = -.4;
-    // }
-    // else if(turretencoder > (AngleTarget+ (Constants.turretAngleError / 2))){
-    //   SpeedPoint = .4;
-    // }
-    // else{
-    //   SpeedPoint = 0;
-    // }
-    m_subsystem.turretPID (SpeedPoint);
+    m_subsystem.turretPID(AngleTarget);
   }
 
   @Override
   public void end(final boolean interrupted) {
-    m_subsystem.rotationspeed (AngleTarget);
+    m_subsystem.rotationspeed (0);
   }
 
   
