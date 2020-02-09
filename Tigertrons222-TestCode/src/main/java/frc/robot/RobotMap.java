@@ -19,7 +19,7 @@ public class RobotMap {
 	//Encoders
 	public static final int DRIVETRAIN_ENCODER_L = 0;
 	public static final int DRIVETRAIN_ENCODER_R = 1;
-	  public static final int TURRET_ENCODER = 2;
+	public static final int TURRET_ENCODER = 2;
 
 	//Controllers
 	public static final int XBOX_DRIVER_CONTROLLER1 = 0;
