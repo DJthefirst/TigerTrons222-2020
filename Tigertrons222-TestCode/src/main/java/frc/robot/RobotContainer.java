@@ -109,14 +109,15 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
-    A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
+    //A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));	
+    //A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
     LB1.whenPressed(new Pnu_ShiftOut(m_shift));	
     LB1.whenReleased(new Pnu_ShiftIn(m_shift));
-    RB1.whenPressed(new Pnu_UnknownOut(m_unknown));	
-    RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
+    //RB1.whenPressed(new Pnu_UnknownOut(m_unknown));	
+    //RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
     //B1.whileHeld(new Drive_PathFinder(m_drivetrain));
-    B1.whileHeld(new Turret_Rotation());
+    B1.whileHeld(new Turret_Rotation(200));
+    X1.whileHeld(new Turret_Rotation(90));
     //A1.whileHeld(new Shooter_SetSpeed(3000));
     //B1.whileHeld(new Shooter_SetSpeed(-3000));
     X1.whileHeld(new LED_spark(-0.75));

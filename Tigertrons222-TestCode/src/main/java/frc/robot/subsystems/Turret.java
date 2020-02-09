@@ -1,11 +1,13 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DutyCycle;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
@@ -21,8 +23,9 @@ public class Turret extends SubsystemBase {
     CANEncoder ShooterCANEncoderRight = new CANEncoder(ShooterMotorRight);
     private CANPIDController m_shooterpidControllerLeft = new CANPIDController(ShooterMotorLeft);
     private CANPIDController m_shooterpidControllerRight = new CANPIDController(ShooterMotorRight);
-    WPI_TalonSRX turretrotationtalon = new WPI_TalonSRX(RobotMap.TURRET_ROTATION_TALON);
-    AnalogPotentiometer Turretrotationanologencoder = new AnalogPotentiometer(RobotMap.TURRET_ENCODER);
+    WPI_TalonSRX turretRotationTalon = new WPI_TalonSRX(RobotMap.TURRET_ROTATION_TALON);
+    DigitalInput TurretEncoderInput = new DigitalInput(RobotMap.TURRET_ENCODER);
+    DutyCycle TurretEncoder = new DutyCycle(TurretEncoderInput);
 
     public Turret() {
     m_shooterpidControllerLeft.setP(Constants.shooter_kGains.kP);
@@ -38,9 +41,10 @@ public class Turret extends SubsystemBase {
     m_shooterpidControllerRight.setIZone(Constants.shooter_kGains.kIzone);
     m_shooterpidControllerRight.setFF(Constants.shooter_kGains.kFF);
     m_shooterpidControllerRight.setOutputRange(Constants.shooter_kGains.kMinOutput, Constants.shooter_kGains.kMaxOutput);
+	
 }
 public double getEncoder(){
-    double Turretposition = Turretrotationanologencoder.get();
+    double Turretposition = TurretEncoder.getOutput()*360;
     System.out.println("Turret Pos: " + Turretposition);
     return Turretposition;
 }
@@ -51,7 +55,7 @@ public void spinSpeed (double spinSpeed){
 
 }
 public void rotationspeed (double rotationspeed){
-    turretrotationtalon.set (rotationspeed);
+    turretRotationTalon.set (rotationspeed);
 }
 
 public void spinSpeedPID (double SetPointSpeed){
@@ -75,4 +79,9 @@ public CANEncoder getShooterEncoderLeft() {
 public CANEncoder getShooterEncoderRight() {
     return ShooterCANEncoderRight;
 }
+
+public void turretPID(double targetPos){
+turretRotationTalon.set(ControlMode.Velocity, targetPos);
+}
+
 }

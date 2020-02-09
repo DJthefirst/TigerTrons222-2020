@@ -51,14 +51,14 @@ public void tankDrive(double leftSpeed, double rightSpeed)
 public double leftEncoderCurrentPos()
 {
     double currentPositionLeft = dutyCycleDrivetrainEncoderLeft.get()*1000;
-    System.out.println("PWM L:" + currentPositionLeft);
+    //System.out.println("PWM L:" + currentPositionLeft);
     return currentPositionLeft;
 }
 
 public double rightEncoderCurrentPos()
 {
     double currentPositionRight = dutyCycleDrivetrainEncoderRight.get()*1000;
-    System.out.println("PWM R:" + currentPositionRight);
+    //System.out.println("PWM R:" + currentPositionRight);
     return currentPositionRight;
 }
 
