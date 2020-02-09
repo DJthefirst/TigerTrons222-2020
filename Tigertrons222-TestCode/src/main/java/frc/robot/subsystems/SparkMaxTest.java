@@ -27,6 +27,9 @@ public class SparkMaxTest extends SubsystemBase {
     m_sparypidController.setOutputRange(Constants.spary_kGains.kMinOutput, Constants.spary_kGains.kMaxOutput);
 }
 
+public SparkMaxTest(int i) {
+	}
+
 public void turn (double turnSpeed)
 {
     SparkyMax.set(turnSpeed);
