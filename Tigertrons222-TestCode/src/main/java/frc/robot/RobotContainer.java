@@ -116,12 +116,12 @@ public class RobotContainer {
     //RB1.whenPressed(new Pnu_UnknownOut(m_unknown));	
     //RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
     //B1.whileHeld(new Drive_PathFinder(m_drivetrain));
-    X1.whileHeld(new Turret_Rotation(2000));
-    Y1.whileHeld(new Turret_Rotation(1000));
+    // X1.whileHeld(new Turret_Rotation(2000));
+    // Y1.whileHeld(new Turret_Rotation(1000));
     //A1.whileHeld(new Shooter_SetSpeed(3000));
     //B1.whileHeld(new Shooter_SetSpeed(-3000));
-    //X1.whileHeld(new LED_spark(-0.75));
-    //Y1.whileHeld(new LED_spark(-.57));  //4400 sexy 
+    X1.whileHeld(new LED_spark(-0.75));
+    Y1.whileHeld(new LED_spark(0.99));  //4400 sexy 
     //LB1.whileHeld(new Shooter_SetSpeed(4100));
     //RB1.whileHeld(new Shooter_SetSpeed(4200));
 //4400 sexy 

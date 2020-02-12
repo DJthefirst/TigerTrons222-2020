@@ -1,7 +1,10 @@
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.LED;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class LED_spark extends CommandBase {
@@ -23,10 +26,17 @@ public class LED_spark extends CommandBase {
   
   @Override
   public void execute() {
-
-    m_subsystem.setLEDcolor(color);
-    
-   }
+    // NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    // NetworkTableEntry tx = table.getEntry("tx");
+    // double x = tx.getDouble(0.0);
+    // if (x<5 && x>-5) {
+    //   m_subsystem.setLEDcolor(0.62);
+    // }
+    // else {
+      m_subsystem.setLEDcolor(color);
+    }
+  //  }
+  
 
   @Override
   public void end(final boolean interrupted) {
