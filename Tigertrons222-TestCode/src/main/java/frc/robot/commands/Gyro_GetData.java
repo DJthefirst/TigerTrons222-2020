@@ -26,7 +26,7 @@ public class Gyro_GetData extends CommandBase {
     //m_subsystem.getraw();   
     //RobotContainer.m_drivetrain.rightEncoderCurrentPos();
     //RobotContainer.m_drivetrain.leftEncoderCurrentPos(); 
-    RobotContainer.m_turret.getTurretPos();                   
+    //RobotContainer.m_turret.getTurretPos();                   
   
   }
 
