@@ -29,6 +29,7 @@ public final class Constants {
   public static final Gains turret_kGains = new Gains(35, 0.01, 15, 0, 0, 0, 1.0, 0);
   //50 .01 32
   //Constant Speeds
+  public static final double wheelRotationInch = 6;
   public static final double conveyor_speed = 0.85;
   public static final double turretAngleError = 2;
 }
