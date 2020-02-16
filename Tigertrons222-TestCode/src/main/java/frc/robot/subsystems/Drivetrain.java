@@ -76,4 +76,8 @@ public double rightEncoderABSPos()
     return absposition;
 }
 
+
+public void Autoforward(double moveSpeed) {
+}
+
 }

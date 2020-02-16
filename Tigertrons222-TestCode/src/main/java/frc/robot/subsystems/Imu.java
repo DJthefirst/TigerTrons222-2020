@@ -13,6 +13,7 @@ public class Imu extends SubsystemBase {
     }
 
   // Set IMU settings
+  //imu = gyro
   public void configCal(){
     m_imu.configCalTime(8);  
   }
