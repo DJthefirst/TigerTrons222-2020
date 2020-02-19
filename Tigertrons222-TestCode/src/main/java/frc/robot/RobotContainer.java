@@ -29,6 +29,7 @@ import frc.robot.commands.Color_Match;
 import frc.robot.commands.Conveyor_Default;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.commands.Drive_PathFinder;
+
 import frc.robot.commands.Gyro_GetData;
 import frc.robot.commands.LED_spark;
 import frc.robot.commands.Limelight_GetData;
@@ -40,7 +41,7 @@ import frc.robot.commands.Pnu_UnknownIn;
 import frc.robot.commands.Pnu_UnknownOut;
 import frc.robot.commands.Turret_Rotation;
 import frc.robot.commands.Turret_SetSpeed;
-import frc.robot.commands.Autodrive_forward;
+import frc.robot.commands.Auto_Rotate;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -116,15 +117,18 @@ public class RobotContainer {
   private void configureButtonBindings(){
     // A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));
     // A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
-    LB1.whenPressed(new Pnu_ShiftOut(m_shift));
-    LB1.whenReleased(new Pnu_ShiftIn(m_shift));
+    RB1.whenPressed(new Pnu_ShiftOut(m_shift));
+    RB1.whenReleased(new Pnu_ShiftIn(m_shift));
     // RB1.whenPressed(new Pnu_UnknownOut(m_unknown));
     // RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
-      B1.whileHeld(new Drive_PathFinder());
+    //B1.whileHeld(new Drive_PathFinder());
+    //B1.whileHeld(new Auto_Rotate(0, 120));
     //X1.whileHeld(new Turret_Rotation(2000));
     //Y1.whileHeld(new Turret_Rotation(1000));
-    //A1.whileHeld(new Shooter_SetSpeed(3000));
-    //B1.whileHeld(new Shooter_SetSpeed(-3000));
+    X1.whileHeld(new Turret_SetSpeed(-1500));
+    Y1.whileHeld(new Turret_SetSpeed(-2500));
+    A1.whileHeld(new Turret_SetSpeed(-3400));
+    B1.whileHeld(new Turret_SetSpeed(-5000));
     //X1.whileHeld(new LED_spark(-0.75));
     //Y1.whileHeld(new LED_spark(0.99));  //4400 sexy 
     //LB1.whileHeld(new Shooter_SetSpeed(4100));

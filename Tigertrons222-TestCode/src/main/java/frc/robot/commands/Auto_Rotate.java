@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Imu;
@@ -12,6 +13,9 @@ public class Auto_Rotate extends CommandBase {
     double angle;
     double initalAngle;
     double CurrentAngle;
+    //double distance = 24;
+    double x;
+
 
     public Auto_Rotate(double rotateSpeedVal, double angleVal) {
         rotatespeed = rotateSpeedVal;
@@ -23,33 +27,34 @@ public class Auto_Rotate extends CommandBase {
 @Override
 public void initialize() {
 
+    //initalAngle = RobotContainer.m_gyro.getangle();
+    RobotContainer.m_drivetrain.resetDriveEncoderPos();
     initalAngle = RobotContainer.m_gyro.getangle();
+    x = angle*Constants.motorRotationInch/Constants.wheelRotationInch;
 }
   
 @Override
 public void execute() {
-  
-    double moveSpeed = 0;
 
-    CurrentAngle = RobotContainer.m_gyro.getangle();
-    
-    double turn = ((initalAngle + angle) - CurrentAngle)*rotatespeed;
+    //CurrentAngle = RobotContainer.m_gyro.getangle();
+
+    //double turn = ((initalAngle + angle) - CurrentAngle)*rotatespeed;
 
 
 
 
 
 
-  if (Math.abs(moveSpeed) < 0.13) {
-    // within 10% joystick, make it zero 
-  moveSpeed = 0;
-  }
-  if (Math.abs(rotatespeed) < 0.13) {
-            // within 10% joystick, make it zero
-            rotatespeed = 0;
-        }
+//   if (Math.abs(moveSpeed) < 0.13) {
+//     // within 10% joystick, make it zero 
+//   moveSpeed = 0;
+//   }
+//   if (Math.abs(rotatespeed) < 0.13) {
+//             // within 10% joystick, make it zero
+//             rotatespeed = 0;
+//         }
 
-        m_subsystem.arcadeDrive(moveSpeed, rotatespeed);
+        m_subsystem.PidDrive(x);
   m_subsystem.leftEncoderABSPos();
   }
 

@@ -19,8 +19,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Turret extends SubsystemBase {
 
-    CANSparkMax ShooterMotorLeft = new CANSparkMax(20, MotorType.kBrushless);
-    CANSparkMax ShooterMotorRight = new CANSparkMax(21, MotorType.kBrushless);
+    CANSparkMax ShooterMotorLeft = new CANSparkMax(RobotMap.SHOOTER1_SPARKMAX, MotorType.kBrushless);
+    CANSparkMax ShooterMotorRight = new CANSparkMax(RobotMap.SHOOTER2_SPARKMAX, MotorType.kBrushless);
     CANEncoder ShooterCANEncoderLeft = new CANEncoder(ShooterMotorLeft);
     CANEncoder ShooterCANEncoderRight = new CANEncoder(ShooterMotorRight);
     private CANPIDController m_shooterpidControllerLeft = new CANPIDController(ShooterMotorLeft);

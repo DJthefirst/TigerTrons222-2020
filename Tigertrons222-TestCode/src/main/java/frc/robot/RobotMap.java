@@ -10,6 +10,8 @@ public class RobotMap {
 	public static final int DRIVETRAIN_LEFT_Slave1_SPARKMAX = 5;
 	public static final int DRIVETRAIN_LEFT_Slave2_SPARKMAX = 6;
 
+	public static final int SHOOTER1_SPARKMAX = 13;
+	public static final int SHOOTER2_SPARKMAX = 14;
 	//Talons
 	public static final int CONVEYOR_MOTOR_TALON = 8;
 	public static final int TURRET_ROTATION_TALON = 9;

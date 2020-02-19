@@ -22,7 +22,7 @@ public class Drive_Arcade extends CommandBase {
   public void execute() {
   
   double moveSpeed = -RobotContainer.Controller.getRawAxis(1);
-  double rotateSpeed = RobotContainer.Controller.getRawAxis(0);
+  double rotateSpeed = RobotContainer.Controller.getRawAxis(4);//
 
   if (Math.abs(moveSpeed) < 0.13) {
     // within 10% joystick, make it zero 
