@@ -3,59 +3,40 @@ package frc.robot.commands;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Imu;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Auto_Rotate extends CommandBase {
-    private final Drivetrain m_subsystem;
+  private final Drivetrain m_subsystem;
 
-    double rotatespeed;
-    double angle;
-    double initalAngle;
-    double CurrentAngle;
-    //double distance = 24;
-    double x;
+  double targetAngle;
+  double initalAngle;
+  double angle;
+  double end =100;
 
-
-    public Auto_Rotate(double rotateSpeedVal, double angleVal) {
-        rotatespeed = rotateSpeedVal;
-        angle = angleVal;
-        m_subsystem = RobotContainer.m_drivetrain;
-        addRequirements(m_subsystem);
+  public Auto_Rotate(double moveSpeedVal, double angleVal) {
+    targetAngle = angleVal;
+    double moveSpeed = moveSpeedVal;
+    m_subsystem = RobotContainer.m_drivetrain;
+    addRequirements(m_subsystem);
   }
   
 @Override
 public void initialize() {
+  RobotContainer.m_gyro.m_reset();
+  initalAngle = RobotContainer.m_gyro.getangle();
+  //RobotContainer.m_drivetrain.resetDriveEncoderPos();
 
-    //initalAngle = RobotContainer.m_gyro.getangle();
-    RobotContainer.m_drivetrain.resetDriveEncoderPos();
-    initalAngle = RobotContainer.m_gyro.getangle();
-    x = angle*Constants.motorRotationInch/Constants.wheelRotationInch;
 }
   
 @Override
 public void execute() {
 
-    //CurrentAngle = RobotContainer.m_gyro.getangle();
+  angle = RobotContainer.m_gyro.getangle();
+  double x = m_subsystem.PidRotate(initalAngle + targetAngle, angle);
+  //System.out.println("Target :"+targetAngle+", Current :"+angle+", Speed :"+x);
 
-    //double turn = ((initalAngle + angle) - CurrentAngle)*rotatespeed;
+  m_subsystem.tankDrive(x, -x);
 
-
-
-
-
-
-//   if (Math.abs(moveSpeed) < 0.13) {
-//     // within 10% joystick, make it zero 
-//   moveSpeed = 0;
-//   }
-//   if (Math.abs(rotatespeed) < 0.13) {
-//             // within 10% joystick, make it zero
-//             rotatespeed = 0;
-//         }
-
-        m_subsystem.PidDrive(x);
-  m_subsystem.leftEncoderABSPos();
   }
 
   @Override
@@ -65,6 +46,13 @@ public void execute() {
   
   @Override
   public boolean isFinished() {
+    end = Math.abs((end/1.05) +(Math.abs(targetAngle + initalAngle) - Math.abs(angle)));
+    if (Math.abs(end) < 5){
+      //return true;
+    }
+    System.out.println("E "+end);
+    System.out.println("I "+initalAngle);
+    System.out.println("A "+angle);
     return false;
   }
 }

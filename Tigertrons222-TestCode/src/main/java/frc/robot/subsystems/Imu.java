@@ -19,7 +19,7 @@ public class Imu extends SubsystemBase {
   }
 
   public void m_reset() {
-    m_imu.reset();
+    //m_imu.reset();
   }
 
   public void runCal() {
@@ -28,18 +28,20 @@ public class Imu extends SubsystemBase {
 
   public double getangle() {
     double angle = m_imu.getAngle();
+    //System.out.println("RAW : " + m_imu.getAngle());
     return angle; 
-    //System.out.println("RAW : "+ raw);
   }
 
   public double getx() {
     double x = m_imu.getXComplementaryAngle();
+    System.out.println("X : "+ x);
     return x;
     //System.out.println("X : "+ x);
   }
 
   public double gety() {
     double y = m_imu.getYComplementaryAngle();
+    System.out.println("Y : "+ y);
     return y;
     //System.out.println("Y : "+ y);
   }

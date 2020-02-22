@@ -1,37 +1,38 @@
 package frc.robot.commands;
 
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Autodrive_forward extends CommandBase {
   private final Drivetrain m_subsystem;
-  double movespeed;
-  double movedistance;
 
-    public Autodrive_forward(double movespeedvalue, double movedistancevalue) {
+  double distance;
+  double initalDistance;
+  double x;
+
+  public Autodrive_forward(double moveSpeedVal, double DistanceVal) {
+    distance = DistanceVal;
+    double moveSpeed = moveSpeedVal;
     m_subsystem = RobotContainer.m_drivetrain;
     addRequirements(m_subsystem);
-    movespeed =  movespeedvalue;
-    movedistance = movedistancevalue;
   }
   
-  @Override
-  public void initialize() {
-  }
+@Override
+public void initialize() {
 
+    //initalAngle = RobotContainer.m_gyro.getangle();
+    RobotContainer.m_drivetrain.resetDriveEncoderPos();
+    initalDistance = RobotContainer.m_gyro.getangle();
+    x = distance*Constants.motorRotationInch/Constants.wheelRotationInch;
+}
   
-  @Override
-  public void execute() {
-  
-  double moveSpeed = 0;
-  if (Math.abs(moveSpeed) < 0.13) {
+@Override
+public void execute() {
 
-    // within 10% joystick, make it zero 
-  moveSpeed = 0;
-  }
-  
-  m_subsystem.arcadeDrive(moveSpeed, moveSpeed);
+  m_subsystem.PidDrive(x);
+  ///m_subsystem.leftEncoderABSPos();
   }
 
   @Override
@@ -41,6 +42,7 @@ public class Autodrive_forward extends CommandBase {
   
   @Override
   public boolean isFinished() {
+    if( Math.abs(x) > Math.abs(distance)){return true;}
     return false;
   }
 }

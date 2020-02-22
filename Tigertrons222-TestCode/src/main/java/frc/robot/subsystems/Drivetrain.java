@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DutyCycle;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
@@ -22,8 +23,10 @@ public class Drivetrain extends SubsystemBase {
     CANSparkMax rightMaster1SparkMax = new CANSparkMax(4, MotorType.kBrushless);
     CANSparkMax rightSlave2SparkMax = new CANSparkMax(5, MotorType.kBrushless);
     CANSparkMax rightSlave3SparkMax = new CANSparkMax(6, MotorType.kBrushless);
+
     CANPIDController leftSparkMaxPID = new CANPIDController(leftMaster1SparkMax);
     CANPIDController rightSparkMaxPID = new CANPIDController(rightMaster1SparkMax);
+    PIDController rotationalController = new PIDController(0,0,0);
 
     CANEncoder rightDriveEncoder = new CANEncoder(rightMaster1SparkMax);
     CANEncoder leftDriveEncoder = new CANEncoder(leftMaster1SparkMax);
@@ -42,77 +45,86 @@ public class Drivetrain extends SubsystemBase {
         leftSlave3SparkMax.follow(leftMaster1SparkMax);
         rightSlave2SparkMax.follow(rightMaster1SparkMax);
         rightSlave3SparkMax.follow(rightMaster1SparkMax);
-
+        leftMaster1SparkMax.setOpenLoopRampRate(.1);
+        rightMaster1SparkMax.setOpenLoopRampRate(.1);
         //leftSparkMaxPID.setFeedbackDevice(null);
         //rightSparkMaxPID.setFeedbackDevice(null);
 
-        leftSparkMaxPID.setP(Constants.drivetrain_kGains.kP);
-        leftSparkMaxPID.setI(Constants.drivetrain_kGains.kI);
-        leftSparkMaxPID.setD(Constants.drivetrain_kGains.kD);
-        leftSparkMaxPID.setIZone(Constants.drivetrain_kGains.kI);
-        leftSparkMaxPID.setFF(Constants.drivetrain_kGains.kFF);
+        leftSparkMaxPID.setP(Constants.drivetrain_Drive_kGains.kP);
+        leftSparkMaxPID.setI(Constants.drivetrain_Drive_kGains.kI);
+        leftSparkMaxPID.setD(Constants.drivetrain_Drive_kGains.kD);
+        leftSparkMaxPID.setIZone(Constants.drivetrain_Drive_kGains.kI);
+        leftSparkMaxPID.setFF(Constants.drivetrain_Drive_kGains.kFF);
         leftSparkMaxPID.setSmartMotionMaxAccel(Constants.drivetrain_kAcc, 0);
         leftSparkMaxPID.setSmartMotionMaxVelocity(Constants.drivetrain_kVel, 0);
+        leftSparkMaxPID.setSmartMotionMaxAccel(1000, 0);
 
-        rightSparkMaxPID.setP(Constants.drivetrain_kGains.kP);
-        rightSparkMaxPID.setI(Constants.drivetrain_kGains.kI);
-        rightSparkMaxPID.setD(Constants.drivetrain_kGains.kD);
-        rightSparkMaxPID.setIZone(Constants.drivetrain_kGains.kI);
-        rightSparkMaxPID.setFF(Constants.drivetrain_kGains.kFF);
+
+        rightSparkMaxPID.setP(Constants.drivetrain_Drive_kGains.kP);
+        rightSparkMaxPID.setI(Constants.drivetrain_Drive_kGains.kI);
+        rightSparkMaxPID.setD(Constants.drivetrain_Drive_kGains.kD);
+        rightSparkMaxPID.setIZone(Constants.drivetrain_Drive_kGains.kI);
+        rightSparkMaxPID.setFF(Constants.drivetrain_Drive_kGains.kFF);
         rightSparkMaxPID.setSmartMotionMaxAccel((Constants.drivetrain_kAcc), 0);
         rightSparkMaxPID.setSmartMotionMaxVelocity(Constants.drivetrain_kVel, 0);
+        rightSparkMaxPID.setSmartMotionMaxAccel(1000, 0);
+
+        rotationalController.setP(Constants.drivetrain_Rotate_kGains.kP);
+        rotationalController.setI(Constants.drivetrain_Rotate_kGains.kI);
+        rotationalController.setD(Constants.drivetrain_Rotate_kGains.kD);
+        rotationalController.disableContinuousInput();
+        rotationalController.setTolerance(.1);
+        rotationalController.setIntegratorRange(-.4, .4);
     }
 
+    //Controls
     public void arcadeDrive(double moveSpeed, double rotateSpeed) {
         differentialDrive.arcadeDrive(-moveSpeed, -rotateSpeed);
     }
 
+    public void tankDrive(double leftSpeed, double rightSpeed){
+        differentialDrive.tankDrive(-leftSpeed,-rightSpeed);
+    }
+
     public void PidDrive(double moveposition) {
-    leftSparkMaxPID.setReference(moveposition, ControlType.kPosition);
-    rightSparkMaxPID.setReference(-moveposition, ControlType.kPosition);
+        leftSparkMaxPID.setReference(moveposition, ControlType.kPosition);
+        rightSparkMaxPID.setReference(-moveposition, ControlType.kPosition);
+    }
 
-}
-
-public void tankDrive(double leftSpeed, double rightSpeed)
-{
-    differentialDrive.tankDrive(-leftSpeed,-rightSpeed);
-}
-
-
-public double leftEncoderCurrentPos()
-{
-    double currentPositionLeft = dutyCycleDrivetrainEncoderLeft.get()*1000;
-    //System.out.println("PWM L:" + currentPositionLeft);
-    return currentPositionLeft;
-}
-
-public double rightEncoderCurrentPos()
-{
-    double currentPositionRight = dutyCycleDrivetrainEncoderRight.get()*1000;
-    //System.out.println("PWM R:" + currentPositionRight);
-    return currentPositionRight;
-}
-
-public double leftEncoderABSPos()
-{
-    double absposition = (DrivetrainEncoderLeft.getOutput()*360);
-    //System.out.println("GetLeft :" + Currentposition);
-    return absposition;
-}
-
-public void resetDriveEncoderPos()
-{
-    rightDriveEncoder.setPosition(0);
-    leftDriveEncoder.setPosition(0);
-}
+    public double PidRotate(double setPoint, double currentPosition) {
+        double speed = rotationalController.calculate(currentPosition,setPoint);
+        return speed;
+    }
 
 
+    //Encoders
 
-public double rightEncoderABSPos()
-{
-    double absposition = (DrivetrainEncoderRight.getOutput()*360);
-    //System.out.println("GetRight :" + Currentposition);
-    return absposition;
-}
+    public double leftEncoderCurrentPos(){
+        double currentPositionLeft = dutyCycleDrivetrainEncoderLeft.get()*1000;
+        System.out.println("PWM L:" + leftDriveEncoder.getPosition());
+        return currentPositionLeft;
+    }
 
+    public double rightEncoderCurrentPos(){
+        double currentPositionRight = dutyCycleDrivetrainEncoderRight.get()*1000; 
+        System.out.println("PWM R:" + rightDriveEncoder.getPosition());
+        return currentPositionRight;
+    }
+
+    public double leftEncoderABSPos(){
+        double absposition = (DrivetrainEncoderLeft.getOutput()*360);
+        //System.out.println("GetLeft :" + Currentposition);
+        return absposition;
+    }
+
+    public double rightEncoderABSPos(){
+        double absposition = (DrivetrainEncoderRight.getOutput()*360);
+        //System.out.println("GetRight :" + Currentposition);
+        return absposition;
+    }
+
+    public void resetDriveEncoderPos(){
+        rightDriveEncoder.setPosition(0);
+        leftDriveEncoder.setPosition(0);
+    }
 }

@@ -26,6 +26,7 @@ import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Limelight;
 
 import frc.robot.commands.Color_Match;
+import frc.robot.commands.ComplexAuto;
 import frc.robot.commands.Conveyor_Default;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.commands.Drive_PathFinder;
@@ -42,6 +43,8 @@ import frc.robot.commands.Pnu_UnknownOut;
 import frc.robot.commands.Turret_Rotation;
 import frc.robot.commands.Turret_SetSpeed;
 import frc.robot.commands.Auto_Rotate;
+import frc.robot.commands.Autodrive_forward;
+import frc.robot.commands.Btn_ResetEncoder;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -119,24 +122,12 @@ public class RobotContainer {
     // A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
     RB1.whenPressed(new Pnu_ShiftOut(m_shift));
     RB1.whenReleased(new Pnu_ShiftIn(m_shift));
-    // RB1.whenPressed(new Pnu_UnknownOut(m_unknown));
-    // RB1.whenReleased(new Pnu_UnknownIn(m_unknown));
-    //B1.whileHeld(new Drive_PathFinder());
-    //B1.whileHeld(new Auto_Rotate(0, 120));
-    //X1.whileHeld(new Turret_Rotation(2000));
-    //Y1.whileHeld(new Turret_Rotation(1000));
-    X1.whileHeld(new Turret_SetSpeed(-1500));
-    Y1.whileHeld(new Turret_SetSpeed(-2500));
-    A1.whileHeld(new Turret_SetSpeed(-3400));
-    B1.whileHeld(new Turret_SetSpeed(-5000));
-    //X1.whileHeld(new LED_spark(-0.75));
-    //Y1.whileHeld(new LED_spark(0.99));  //4400 sexy 
-    //LB1.whileHeld(new Shooter_SetSpeed(4100));
-    //RB1.whileHeld(new Shooter_SetSpeed(4200));
-//4400 sexy 
-    //Y1.whileHeld(new Conveyor_Default(m_conveyor));
-    
+    X1.whileHeld(new Autodrive_forward(0, 120));
+    Y1.whenPressed(new Auto_Rotate(0, -90));
+    B1.whileHeld(new Btn_ResetEncoder());
+    A1.whileHeld(new ComplexAuto());
 
+    
   }
 
   /**
