@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drivetrain;
@@ -42,9 +42,12 @@ import frc.robot.commands.Pnu_UnknownIn;
 import frc.robot.commands.Pnu_UnknownOut;
 import frc.robot.commands.Turret_Rotation;
 import frc.robot.commands.Turret_SetSpeed;
+import frc.robot.commands.Conveyor_Default;
+import frc.robot.commands.Arm_Intake;
 import frc.robot.commands.Auto_Rotate;
 import frc.robot.commands.Autodrive_forward;
 import frc.robot.commands.Btn_ResetEncoder;
+import frc.robot.commands.ComplexAuto;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -59,18 +62,20 @@ public class RobotContainer {
   public static final Conveyor m_conveyor = new Conveyor();
   public static final Turret m_turret = new Turret();
   public static final LED m_LED = new LED();
-  private final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
-  private final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();
-  private final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();
-  private final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();
+  public static final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
+  public static final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();
+  public static final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();
+  public static final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();
   public static final Imu m_gyro = new Imu();
   public static final Limelight m_limelight = new Limelight();
+  public static final Arm m_arm = new Arm();
 
   // Default Commands Only
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
   private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
   private final Gyro_GetData m_gyroget = new Gyro_GetData(m_gyro);
   private final Limelight_GetData m_limelightGetData = new Limelight_GetData(m_limelight);
+  private final ComplexAuto m_auto = new ComplexAuto();
 
   public static final XboxController Controller = new XboxController(0);
   public static final XboxController Controller2 = new XboxController(1);
@@ -122,9 +127,13 @@ public class RobotContainer {
     // A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
     RB1.whenPressed(new Pnu_ShiftOut(m_shift));
     RB1.whenReleased(new Pnu_ShiftIn(m_shift));
-    X1.whileHeld(new Autodrive_forward(0, 120));
-    Y1.whenPressed(new Auto_Rotate(0, -90));
-    B1.whileHeld(new Btn_ResetEncoder());
+    X1.whileHeld(new Arm_Intake(-6000));
+    Y1.whileHeld(new Arm_Intake(-8000));
+    //A1.whileHeld(new Arm_Intake(-10000));
+    //B1.whileHeld(new Arm_Intake(-12000));
+    //X1.whileHeld(new Autodrive_forward(0, 120));
+    //Y1.whenPressed(new Auto_Rotate(0, -90));
+    //B1.whileHeld(new Btn_ResetEncoder());
     A1.whileHeld(new ComplexAuto());
 
     
@@ -137,6 +146,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_drive_arcade;
+    return new ComplexAuto();
   }
 }

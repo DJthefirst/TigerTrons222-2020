@@ -29,7 +29,7 @@ public final class Constants {
   public static final Gains turret_kGains = new Gains(35, 0.01, 15, 0, 0, 0, 1.0, 0);
 
   public static final Gains drivetrain_Drive_kGains = new Gains(.1, 1e-4, 1, 0, 0, 1, .3, 0);
-  public static final Gains drivetrain_Rotate_kGains = new Gains(.06, .0005, .005, 0, 0, 0, 0, 0); //(.1, 0, .005, 0, 0, 0, 0, 0);
+  public static final Gains drivetrain_Rotate_kGains = new Gains(.065, .1, .006, 0, 0, 0, 0, 0); //(.1, 0, .005, 0, 0, 0, 0, 0);
 
 
   public static final double drivetrain_kVel = 1;

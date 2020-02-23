@@ -41,18 +41,16 @@ public void execute() {
 
   @Override
   public void end(boolean interrupted) {
+    System.out.println("Oop");
   }
 
   
   @Override
   public boolean isFinished() {
-    end = Math.abs((end/1.05) +(Math.abs(targetAngle + initalAngle) - Math.abs(angle)));
-    if (Math.abs(end) < 5){
-      //return true;
-    }
+    end = (end/1.09) + Math.abs((Math.abs(targetAngle + initalAngle) - Math.abs(angle)));
     System.out.println("E "+end);
     System.out.println("I "+initalAngle);
     System.out.println("A "+angle);
-    return false;
+    return (end < 1);
   }
 }

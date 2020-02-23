@@ -42,7 +42,6 @@ public void execute() {
   
   @Override
   public boolean isFinished() {
-    if( Math.abs(x) > Math.abs(distance)){return true;}
-    return false;
+    return ( Math.abs(x) > Math.abs(distance));
   }
 }
