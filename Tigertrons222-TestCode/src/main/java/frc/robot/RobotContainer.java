@@ -127,14 +127,18 @@ public class RobotContainer {
     // A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
     RB1.whenPressed(new Pnu_ShiftOut(m_shift));
     RB1.whenReleased(new Pnu_ShiftIn(m_shift));
-    X1.whileHeld(new Arm_Intake(-6000));
+    LB1.whenPressed(new Pnu_UnknownOut(m_unknown));
+    LB1.whenReleased(new Pnu_UnknownIn(m_unknown));
+
+    //X1.whileHeld(new Arm_Intake(-6000));
     Y1.whileHeld(new Arm_Intake(-8000));
+    X1.whileHeld(new Arm_Intake(-6000));
     //A1.whileHeld(new Arm_Intake(-10000));
-    //B1.whileHeld(new Arm_Intake(-12000));
+    B1.whileHeld(new Turret_SetSpeed(-4000));
     //X1.whileHeld(new Autodrive_forward(0, 120));
     //Y1.whenPressed(new Auto_Rotate(0, -90));
     //B1.whileHeld(new Btn_ResetEncoder());
-    A1.whileHeld(new ComplexAuto());
+    //A1.whileHeld(new ComplexAuto());
 
     
   }

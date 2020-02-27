@@ -6,13 +6,14 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Auto_Rotate;
 import frc.robot.commands.Autodrive_forward;
 
-public class ComplexAuto extends SequentialCommandGroup {
+public class ComplexAuto extends CommandGroupBase {
 
-  public void ComplexAuto() {
-   addCommands(new Auto_Rotate(5, 45));
-   addCommands(new Autodrive_forward(5, 5));
-   
+  @Override
+  public void addCommands(Command... commands) {
+    new SequentialCommandGroup(new Autodrive_forward(5, 5), new Auto_Rotate(5, 45));
   }
+
+
 
 
 
