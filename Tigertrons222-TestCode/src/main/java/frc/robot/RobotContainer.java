@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drivetrain;
@@ -27,7 +27,6 @@ import frc.robot.subsystems.Limelight;
 
 import frc.robot.commands.Color_Match;
 import frc.robot.commands.ComplexAuto;
-import frc.robot.commands.Conveyor_Default;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.commands.Drive_PathFinder;
 
@@ -42,7 +41,7 @@ import frc.robot.commands.Pnu_UnknownIn;
 import frc.robot.commands.Pnu_UnknownOut;
 import frc.robot.commands.Turret_Rotation;
 import frc.robot.commands.Turret_SetSpeed;
-import frc.robot.commands.Conveyor_Default;
+import frc.robot.commands.Conveyor_Intake;
 import frc.robot.commands.Arm_Intake;
 import frc.robot.commands.Auto_Rotate;
 import frc.robot.commands.Autodrive_forward;
@@ -68,7 +67,7 @@ public class RobotContainer {
   public static final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();
   public static final Imu m_gyro = new Imu();
   public static final Limelight m_limelight = new Limelight();
-  public static final Arm m_arm = new Arm();
+  public static final Intake m_arm = new Intake();
 
   // Default Commands Only
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);

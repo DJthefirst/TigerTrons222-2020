@@ -1,17 +1,17 @@
 package frc.robot.commands;
 
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Conveyor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Arm_Intake extends CommandBase {
-    private final Intake m_subsystem;
+public class Conveyor_Intake extends CommandBase {
+  private final Conveyor m_subsystem;
 
-    double SpeedPoint;
+  double SpeedPoint;
 
-    public Arm_Intake(double Speed) {
+  public Conveyor_Intake(double Speed) {
     SpeedPoint = Speed;
-    m_subsystem = RobotContainer.m_arm;
+    m_subsystem = RobotContainer.m_conveyor;
     addRequirements(m_subsystem);
   }
   

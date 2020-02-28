@@ -13,8 +13,9 @@ public class RobotMap {
 	public static final int INTAKE_SPARKMAX = 15;
 	public static final int SHOOTER1_SPARKMAX = 13;
 	public static final int SHOOTER2_SPARKMAX = 14;
+	public static final int CONVEYOR_SPARKMAX = 8;
+
 	//Talons
-	public static final int CONVEYOR_MOTOR_TALON = 8;
 	public static final int TURRET_ROTATION_TALON = 9;
 
 	//Spikes

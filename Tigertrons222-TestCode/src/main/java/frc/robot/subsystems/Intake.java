@@ -11,7 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Arm extends SubsystemBase {
+public class Intake extends SubsystemBase {
 
     CANSparkMax IntakeSparkMax = new CANSparkMax(RobotMap.INTAKE_SPARKMAX, MotorType.kBrushless);
     CANEncoder IntakeCANEncoder = new CANEncoder(IntakeSparkMax);
@@ -19,7 +19,7 @@ public class Arm extends SubsystemBase {
     // DutyCycle SparkEncoder = new DutyCycle(SparkEncoderInput);
     private CANPIDController m_intakePidController = new CANPIDController(IntakeSparkMax);
 
-    public Arm() {
+    public Intake() {
 
         m_intakePidController.setP(Constants.spary_kGains.kP);
         m_intakePidController.setI(Constants.spary_kGains.kI);
@@ -29,7 +29,7 @@ public class Arm extends SubsystemBase {
         m_intakePidController.setOutputRange(Constants.spary_kGains.kMinOutput, Constants.spary_kGains.kMaxOutput);
     }
 
-    public Arm(int i) {
+    public Intake(int i) {
 	}
 
 public void turn (double turnSpeed)
