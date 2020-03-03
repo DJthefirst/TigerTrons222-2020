@@ -34,7 +34,7 @@ public class Auto_Shoot extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.m_conveyor.turn(0);
+    RobotContainer.m_conveyor.spinSpeed(0);
     RobotContainer.m_Shooter.spinSpeed(0);
 
   }

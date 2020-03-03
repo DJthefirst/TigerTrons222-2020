@@ -28,7 +28,7 @@ public class Arm_Intake extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.turn(0);
+    m_subsystem.spinSpeed(0);
   }
 
   

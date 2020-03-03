@@ -32,7 +32,7 @@ public class Intake extends SubsystemBase {
     public Intake(int i) {
 	}
 
-public void turn (double turnSpeed)
+public void spinSpeed (double turnSpeed)
 {
     IntakeSparkMax.set(turnSpeed);
 }

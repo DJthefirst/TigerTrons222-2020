@@ -32,7 +32,7 @@ public class Conveyor extends SubsystemBase {
     public Conveyor(int i) {
 	}
 
-public void turn (double turnSpeed)
+public void spinSpeed (double turnSpeed)
 {
     conveyorSparkMax.set(turnSpeed);
 }

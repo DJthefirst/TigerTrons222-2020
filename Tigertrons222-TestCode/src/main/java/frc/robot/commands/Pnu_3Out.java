@@ -14,8 +14,8 @@ import frc.robot.subsystems.PnuHatchSubsystem;
 /**
  * A command that releases the hatch.
  */
-public class Pnu_HatchOut extends InstantCommand {
-  public Pnu_HatchOut(PnuHatchSubsystem subsystem) {
+public class Pnu_3Out extends InstantCommand {
+  public Pnu_3Out(PnuHatchSubsystem subsystem) {
     super(subsystem::deploySolenoid, subsystem);
   }
 }
