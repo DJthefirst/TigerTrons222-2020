@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -9,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Publish_data extends CommandBase {
     private final Limelight m_subsystem;
+    NetworkTable table;
     double x;
     double y;
     double z;
@@ -25,18 +27,14 @@ public class Publish_data extends CommandBase {
   
   @Override
   public void initialize() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
-
+    table = NetworkTableInstance.getDefault().getTable("limelight");
     SmartDashboard.putNumber("Shooter Rpm", 1000);
   }
 
   
   @Override
   public void execute() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
     NetworkTableEntry ta = table.getEntry("ta");
@@ -54,6 +52,8 @@ public class Publish_data extends CommandBase {
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
+    SmartDashboard.putNumber("GyroX",RobotContainer.m_gyro.getx());
+    SmartDashboard.putNumber("GyroY",RobotContainer.m_gyro.gety());
   }
 
   @Override

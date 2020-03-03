@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.autocommands;
 
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Shooter;

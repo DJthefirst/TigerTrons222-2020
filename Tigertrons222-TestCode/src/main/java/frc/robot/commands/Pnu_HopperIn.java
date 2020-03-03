@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.PnuUnknownSubsystem;
 
 
-public class Pnu_UnknownIn extends CommandBase {
-  
-  private final  PnuUnknownSubsystem m_subsystem;
+public class Pnu_HopperIn extends CommandBase {
 
-  public Pnu_UnknownIn(PnuUnknownSubsystem subsystem) {
+  private final PnuUnknownSubsystem m_subsystem;
+
+  public Pnu_HopperIn(PnuUnknownSubsystem subsystem) {
     m_subsystem = subsystem;
     addRequirements(m_subsystem);
   }

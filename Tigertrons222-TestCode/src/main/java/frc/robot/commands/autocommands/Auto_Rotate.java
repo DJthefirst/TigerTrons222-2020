@@ -1,6 +1,5 @@
-package frc.robot.commands;
+package frc.robot.commands.autocommands;
 
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -15,7 +14,7 @@ public class Auto_Rotate extends CommandBase {
 
   public Auto_Rotate(double moveSpeedVal, double angleVal) {
     targetAngle = angleVal;
-    double moveSpeed = moveSpeedVal;
+    //double moveSpeed = moveSpeedVal;
     m_subsystem = RobotContainer.m_drivetrain;
     addRequirements(m_subsystem);
   }
@@ -48,9 +47,9 @@ public void execute() {
   @Override
   public boolean isFinished() {
     end = (end/1.09) + Math.abs((Math.abs(targetAngle + initalAngle) - Math.abs(angle)));
-    System.out.println("E "+end);
-    System.out.println("I "+initalAngle);
-    System.out.println("A "+angle);
+    //System.out.println("E "+end);
+    //System.out.println("I "+initalAngle);
+    //System.out.println("A "+angle);
     return (end < 1);
   }
 }

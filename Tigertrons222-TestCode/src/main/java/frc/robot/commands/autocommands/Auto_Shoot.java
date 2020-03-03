@@ -1,11 +1,7 @@
-package frc.robot.commands;
-
+package frc.robot.commands.autocommands;
 import frc.robot.Constants;
-import frc.robot.commands.Pnu_UnknownOut;
-import frc.robot.commands.Pnu_UnknownIn;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Auto_Shoot extends CommandBase {
@@ -23,29 +19,17 @@ public class Auto_Shoot extends CommandBase {
   
   @Override
   public void initialize() {
-    //tilt balls
-    //new Pnu_UnknownOut(RobotContainer.m_unknown);
-    
-  }
 
+  }
   
   @Override
   public void execute() {
-    //limelight on and aim
 
-    //get limelight distance to rpm
-
-    //rev up motor
-    
-    //when motor up to speed shoot
     RobotContainer.m_Shooter.spinSpeedPID(ShooterRPMTarget);
 
     if (Math.abs(RobotContainer.m_Shooter.getShooterSpeed()) > Math.abs(ShooterRPMTarget*.9)){
       RobotContainer.m_conveyor.spinSpeedPID(Constants.conveyor_speed);
     }
-    //else{
-        //RobotContainer.m_conveyor.turn(0);
-    //}
   }
 
   @Override

@@ -5,8 +5,8 @@ import frc.robot.subsystems.PnuUnknownSubsystem;
 
 
 
-public class Pnu_UnknownOut extends InstantCommand {
-  public Pnu_UnknownOut(PnuUnknownSubsystem subsystem) {
+public class Pnu_HopperOut extends InstantCommand {
+  public Pnu_HopperOut(PnuUnknownSubsystem subsystem) {
     super(subsystem::deploySolenoid, subsystem);
   }
 }

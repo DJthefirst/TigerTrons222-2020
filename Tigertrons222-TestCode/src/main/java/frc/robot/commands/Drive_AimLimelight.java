@@ -38,7 +38,7 @@ public class Drive_AimLimelight extends CommandBase{
         double xx = tx.getDouble(0.0);
         double yy = ty.getDouble(0.0);
         double Are = ta.getDouble(0.0);
-        double offset = 0; //2.57
+        //double offset = 0; //2.57
 
         SmartDashboard.putNumber("LimelightX", xx);
         SmartDashboard.putNumber("LimelightY", yy);

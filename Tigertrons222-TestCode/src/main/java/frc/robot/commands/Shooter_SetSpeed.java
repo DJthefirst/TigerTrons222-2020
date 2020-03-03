@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Shooter_SetSpeed extends CommandBase {
   private final Shooter m_subsystem;
 
+  NetworkTable table;
   double SpeedPoint;
   double x;
   double x2;
@@ -29,7 +30,7 @@ public class Shooter_SetSpeed extends CommandBase {
   
   @Override
   public void execute() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    table = NetworkTableInstance.getDefault().getTable("limelight");
     x = SmartDashboard.getNumber("Distance from target",0);
     x4 = x3;
     x3 = x2;

@@ -25,32 +25,23 @@ import frc.robot.subsystems.PnuUnknownSubsystem;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
 
-import frc.robot.commands.Color_Match;
-import frc.robot.commands.ComplexAuto;
 import frc.robot.commands.Drive_Arcade;
-import frc.robot.commands.Drive_PathFinder;
-
-import frc.robot.commands.Gyro_GetData;
 import frc.robot.commands.LED_spark;
 import frc.robot.commands.Limelight_GetData;
 import frc.robot.commands.Limelight_Led;
 import frc.robot.commands.Pnu_HatchIn;
 import frc.robot.commands.Pnu_HatchOut;
+import frc.robot.commands.Pnu_HopperIn;
+import frc.robot.commands.Pnu_HopperOut;
 import frc.robot.commands.Pnu_ShiftIn;
 import frc.robot.commands.Pnu_ShiftOut;
-import frc.robot.commands.Pnu_UnknownIn;
-import frc.robot.commands.Pnu_UnknownOut;
 import frc.robot.commands.Publish_data;
 import frc.robot.commands.Shooter_SetSpeed;
-import frc.robot.commands.Shooter_Conveyor;
+import frc.robot.commands.autocommands.Auto_Shoot;
+import frc.robot.commands.autocommands.ComplexAuto;
 import frc.robot.commands.Conveyor_Intake;
 import frc.robot.commands.Drive_AimLimelight;
 import frc.robot.commands.Arm_Intake;
-import frc.robot.commands.Auto_Rotate;
-import frc.robot.commands.Auto_Shoot;
-import frc.robot.commands.Autodrive_forward;
-import frc.robot.commands.Btn_ResetEncoder;
-import frc.robot.commands.ComplexAuto;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -75,8 +66,6 @@ public class RobotContainer {
 
   // Default Commands Only
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
-  private final Color_Match m_colormatch = new Color_Match(m_colorSubsystem);
-  private final Gyro_GetData m_gyroget = new Gyro_GetData(m_gyro);
   private final Limelight_GetData m_limelightGetData = new Limelight_GetData(m_limelight);
   private final ComplexAuto m_auto = new ComplexAuto();
   private final Publish_data m_publish = new Publish_data(m_limelight);
@@ -113,8 +102,6 @@ public class RobotContainer {
 
     // Default Commands Only
     m_drivetrain.setDefaultCommand(m_drive_arcade);
-    m_colorSubsystem.setDefaultCommand(m_colormatch);
-    m_gyro.setDefaultCommand(m_gyroget);
     m_limelight.setDefaultCommand(m_publish);
   }
 
@@ -131,8 +118,8 @@ public class RobotContainer {
     // A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
     RB1.whenPressed(new Pnu_ShiftOut(m_shift));
     RB1.whenReleased(new Pnu_ShiftIn(m_shift));
-    LB1.whenPressed(new Pnu_UnknownOut(m_unknown));
-    LB1.whenReleased(new Pnu_UnknownIn(m_unknown));
+    LB1.whenPressed(new Pnu_HopperOut(m_unknown));
+    LB1.whenReleased(new Pnu_HopperIn(m_unknown));
     ST1.whenPressed(new Limelight_Led());
 
     Y1.whileHeld(new Arm_Intake(-10000));
