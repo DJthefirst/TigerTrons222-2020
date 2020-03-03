@@ -22,7 +22,7 @@ import frc.robot.subsystems.LED;
 import frc.robot.subsystems.PnuHatchSubsystem;
 import frc.robot.subsystems.PnuShiftSubsystem;
 import frc.robot.subsystems.PnuUnknownSubsystem;
-import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
 
 import frc.robot.commands.Color_Match;
@@ -33,17 +33,21 @@ import frc.robot.commands.Drive_PathFinder;
 import frc.robot.commands.Gyro_GetData;
 import frc.robot.commands.LED_spark;
 import frc.robot.commands.Limelight_GetData;
+import frc.robot.commands.Limelight_Led;
 import frc.robot.commands.Pnu_HatchIn;
 import frc.robot.commands.Pnu_HatchOut;
 import frc.robot.commands.Pnu_ShiftIn;
 import frc.robot.commands.Pnu_ShiftOut;
 import frc.robot.commands.Pnu_UnknownIn;
 import frc.robot.commands.Pnu_UnknownOut;
-import frc.robot.commands.Turret_Rotation;
-import frc.robot.commands.Turret_SetSpeed;
+import frc.robot.commands.Publish_data;
+import frc.robot.commands.Shooter_SetSpeed;
+import frc.robot.commands.Shooter_Conveyor;
 import frc.robot.commands.Conveyor_Intake;
+import frc.robot.commands.Drive_AimLimelight;
 import frc.robot.commands.Arm_Intake;
 import frc.robot.commands.Auto_Rotate;
+import frc.robot.commands.Auto_Shoot;
 import frc.robot.commands.Autodrive_forward;
 import frc.robot.commands.Btn_ResetEncoder;
 import frc.robot.commands.ComplexAuto;
@@ -59,7 +63,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final Drivetrain m_drivetrain = new Drivetrain();
   public static final Conveyor m_conveyor = new Conveyor();
-  public static final Turret m_turret = new Turret();
+  public static final Shooter m_Shooter = new Shooter();
   public static final LED m_LED = new LED();
   public static final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
   public static final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();
@@ -75,6 +79,7 @@ public class RobotContainer {
   private final Gyro_GetData m_gyroget = new Gyro_GetData(m_gyro);
   private final Limelight_GetData m_limelightGetData = new Limelight_GetData(m_limelight);
   private final ComplexAuto m_auto = new ComplexAuto();
+  private final Publish_data m_publish = new Publish_data(m_limelight);
 
   public static final XboxController Controller = new XboxController(0);
   public static final XboxController Controller2 = new XboxController(1);
@@ -110,7 +115,7 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(m_drive_arcade);
     m_colorSubsystem.setDefaultCommand(m_colormatch);
     m_gyro.setDefaultCommand(m_gyroget);
-    m_limelight.setDefaultCommand(m_limelightGetData);
+    m_limelight.setDefaultCommand(m_publish);
   }
 
   /**
@@ -128,16 +133,22 @@ public class RobotContainer {
     RB1.whenReleased(new Pnu_ShiftIn(m_shift));
     LB1.whenPressed(new Pnu_UnknownOut(m_unknown));
     LB1.whenReleased(new Pnu_UnknownIn(m_unknown));
+    ST1.whenPressed(new Limelight_Led());
 
+    Y1.whileHeld(new Arm_Intake(-10000));
+    //Y1.whileHeld(new Arm_Intake(-8000));
     //X1.whileHeld(new Arm_Intake(-6000));
-    Y1.whileHeld(new Arm_Intake(-8000));
-    X1.whileHeld(new Arm_Intake(-6000));
-    //A1.whileHeld(new Arm_Intake(-10000));
-    B1.whileHeld(new Turret_SetSpeed(-4000));
+    
+    //Y1.whileHeld(new Shooter_Conveyor(-4000,-6000));
+    X1.whileHeld(new Conveyor_Intake(Constants.conveyor_speed));
+    //Y1.whileHeld(new Conveyor_Intake(-12000));
+    A1.whileHeld(new Conveyor_Intake(-6000));
+    B1.whileHeld(new Shooter_SetSpeed(-4500));
+    A2.whileHeld(new Drive_AimLimelight());
     //X1.whileHeld(new Autodrive_forward(0, 120));
-    //Y1.whenPressed(new Auto_Rotate(0, -90));
+    Y2.whileHeld(new Auto_Shoot());
     //B1.whileHeld(new Btn_ResetEncoder());
-    //A1.whileHeld(new ComplexAuto());
+    X2.whileHeld(new ComplexAuto());
 
     
   }

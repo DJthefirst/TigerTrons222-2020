@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Imu;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Gyro_GetData extends CommandBase {
@@ -21,8 +22,10 @@ public class Gyro_GetData extends CommandBase {
   @Override
   public void execute() {
     //double x = RobotContainer.m_drivetrain.rightEncoderCurrentPos();
-    //m_subsystem.getx();
+    
+    SmartDashboard.putNumber("GyroX",m_subsystem.getx());
     //m_subsystem.gety(); 
+    SmartDashboard.putNumber("GyroY", m_subsystem.gety());
     //m_subsystem.getangle();   
     //RobotContainer.m_drivetrain.rightEncoderCurrentPos();
     //RobotContainer.m_drivetrain.leftEncoderCurrentPos(); 

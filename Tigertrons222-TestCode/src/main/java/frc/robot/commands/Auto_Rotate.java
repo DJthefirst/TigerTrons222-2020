@@ -32,7 +32,7 @@ public void initialize() {
 public void execute() {
 
   angle = RobotContainer.m_gyro.getangle();
-  double x = m_subsystem.PidRotate(initalAngle + targetAngle, angle);
+  double x = m_subsystem.GyroPidRotate(initalAngle + targetAngle, angle);
   //System.out.println("Target :"+targetAngle+", Current :"+angle+", Speed :"+x);
 
   m_subsystem.tankDrive(x, -x);

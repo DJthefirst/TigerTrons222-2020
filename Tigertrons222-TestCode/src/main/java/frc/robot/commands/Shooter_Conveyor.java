@@ -1,17 +1,20 @@
 package frc.robot.commands;
 
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Turret_SetSpeed extends CommandBase {
-  private final Turret m_subsystem;
+public class Shooter_Conveyor extends CommandBase {
+  private final Shooter m_subsystem;
 
   double SpeedPoint;
+  double intakeSpeed;
 
-  public Turret_SetSpeed(double Speed) {
+  public Shooter_Conveyor(double Speed,double IntakeSpeed) {
     SpeedPoint = Speed;
-    m_subsystem = RobotContainer.m_turret;
+    intakeSpeed = IntakeSpeed;
+    m_subsystem = RobotContainer.m_Shooter;
+  
     addRequirements(m_subsystem);
   }
   
@@ -24,11 +27,15 @@ public class Turret_SetSpeed extends CommandBase {
   public void execute() {
     m_subsystem.spinSpeedPID(SpeedPoint);
 
+    if (Math.abs(m_subsystem.getShooterSpeed()) > Math.abs(SpeedPoint*.95)){
+      RobotContainer.m_conveyor.spinSpeedPID(intakeSpeed);
+    }
   }
 
   @Override
   public void end(boolean interrupted) {
     m_subsystem.spinSpeed(0);
+    RobotContainer.m_conveyor.turn(0);
   }
 
   

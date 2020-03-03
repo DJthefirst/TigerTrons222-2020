@@ -34,14 +34,14 @@ public class Imu extends SubsystemBase {
 
   public double getx() {
     double x = m_imu.getXComplementaryAngle();
-    System.out.println("X : "+ x);
+    //System.out.println("X : "+ x);
     return x;
     //System.out.println("X : "+ x);
   }
 
   public double gety() {
     double y = m_imu.getYComplementaryAngle();
-    System.out.println("Y : "+ y);
+    //System.out.println("Y : "+ y);
     return y;
     //System.out.println("Y : "+ y);
   }

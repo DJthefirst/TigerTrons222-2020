@@ -17,7 +17,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Turret extends SubsystemBase {
+public class Shooter extends SubsystemBase {
 
     CANSparkMax ShooterMotorLeft = new CANSparkMax(RobotMap.SHOOTER1_SPARKMAX, MotorType.kBrushless);
     CANSparkMax ShooterMotorRight = new CANSparkMax(RobotMap.SHOOTER2_SPARKMAX, MotorType.kBrushless);
@@ -26,10 +26,10 @@ public class Turret extends SubsystemBase {
     private CANPIDController m_shooterpidControllerLeft = new CANPIDController(ShooterMotorLeft);
     private CANPIDController m_shooterpidControllerRight = new CANPIDController(ShooterMotorRight);
     WPI_TalonSRX turretRotationTalon = new WPI_TalonSRX(RobotMap.TURRET_ROTATION_TALON);
-    //DigitalInput TurretEncoderInput = new DigitalInput(RobotMap.TURRET_ENCODER);
-    //DutyCycle TurretEncoder = new DutyCycle(TurretEncoderInput);
+    // DigitalInput TurretEncoderInput = new DigitalInput(RobotMap.TURRET_ENCODER);
+    // DutyCycle TurretEncoder = new DutyCycle(TurretEncoderInput);
 
-    public Turret() {
+    public Shooter() {
     m_shooterpidControllerLeft.setP(Constants.shooter_kGains.kP);
     m_shooterpidControllerLeft.setI(Constants.shooter_kGains.kI);
     m_shooterpidControllerLeft.setD(Constants.shooter_kGains.kD);
@@ -98,6 +98,10 @@ public void spinSpeedDoublePID (double SetPointSpeedLeft,double SetPointSpeedRig
     m_shooterpidControllerRight.setReference(SetPointSpeedRight, ControlType.kVelocity);
 }
 
+public double getShooterSpeed(){
+    double shotSpeed = ShooterCANEncoderLeft.getVelocity();
+    return shotSpeed;
+}
 
 public CANEncoder getShooterEncoderLeft() {
     return ShooterCANEncoderLeft;
@@ -108,11 +112,11 @@ public CANEncoder getShooterEncoderRight() {
     return ShooterCANEncoderRight;
 }
 
-public void turretPID(double targetPos){
+public void shooterPID(double targetPos){
 turretRotationTalon.set(ControlMode.Position, targetPos);
 }
 
-public int getTurretPos(){
+public int getShooterPos(){
     System.out.println(turretRotationTalon.getSelectedSensorPosition());
 return turretRotationTalon.getSelectedSensorPosition();
 }

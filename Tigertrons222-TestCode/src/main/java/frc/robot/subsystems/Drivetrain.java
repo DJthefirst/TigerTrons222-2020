@@ -26,7 +26,8 @@ public class Drivetrain extends SubsystemBase {
 
     CANPIDController leftSparkMaxPID = new CANPIDController(leftMaster1SparkMax);
     CANPIDController rightSparkMaxPID = new CANPIDController(rightMaster1SparkMax);
-    PIDController rotationalController = new PIDController(0,0,0);
+    PIDController GyrorotationalController = new PIDController(0,0,0);
+    PIDController LimerotationalController = new PIDController(0,0,0);
 
     CANEncoder rightDriveEncoder = new CANEncoder(rightMaster1SparkMax);
     CANEncoder leftDriveEncoder = new CANEncoder(leftMaster1SparkMax);
@@ -69,12 +70,19 @@ public class Drivetrain extends SubsystemBase {
         rightSparkMaxPID.setSmartMotionMaxVelocity(Constants.drivetrain_kVel, 0);
         rightSparkMaxPID.setSmartMotionMaxAccel(1000, 0);
 
-        rotationalController.setP(Constants.drivetrain_Rotate_kGains.kP);
-        rotationalController.setI(Constants.drivetrain_Rotate_kGains.kI);
-        rotationalController.setD(Constants.drivetrain_Rotate_kGains.kD);
-        rotationalController.disableContinuousInput();
-        rotationalController.setTolerance(.1);
-        rotationalController.setIntegratorRange(-.4, .4);
+        GyrorotationalController.setP(Constants.drivetrain_GyroRotate_kGains.kP);
+        GyrorotationalController.setI(Constants.drivetrain_GyroRotate_kGains.kI);
+        GyrorotationalController.setD(Constants.drivetrain_GyroRotate_kGains.kD);
+        GyrorotationalController.disableContinuousInput();
+        GyrorotationalController.setTolerance(.1);
+        GyrorotationalController.setIntegratorRange(-.4, .4);
+
+        LimerotationalController.setP(Constants.drivetrain_LimeRotate_kGains.kP);
+        LimerotationalController.setI(Constants.drivetrain_LimeRotate_kGains.kI);
+        LimerotationalController.setD(Constants.drivetrain_LimeRotate_kGains.kD);
+        LimerotationalController.disableContinuousInput();
+        LimerotationalController.setTolerance(.1);
+        LimerotationalController.setIntegratorRange(-.4, .4);
     }
 
     //Controls
@@ -91,8 +99,13 @@ public class Drivetrain extends SubsystemBase {
         rightSparkMaxPID.setReference(-moveposition, ControlType.kPosition);
     }
 
-    public double PidRotate(double setPoint, double currentPosition) {
-        double speed = rotationalController.calculate(currentPosition,setPoint);
+    public double GyroPidRotate(double setPoint, double currentPosition) {
+        double speed = GyrorotationalController.calculate(currentPosition,setPoint);
+        return speed;
+    }
+
+    public double LimePidRotate(double setPoint, double currentPosition) {
+        double speed = LimerotationalController.calculate(currentPosition,setPoint);
         return speed;
     }
 
@@ -100,14 +113,16 @@ public class Drivetrain extends SubsystemBase {
     //Encoders
 
     public double leftEncoderCurrentPos(){
-        double currentPositionLeft = dutyCycleDrivetrainEncoderLeft.get()*1000;
-        System.out.println("PWM L:" + leftDriveEncoder.getPosition());
+        //double currentPositionLeft = dutyCycleDrivetrainEncoderLeft.get()*1000;
+        double currentPositionLeft = rightDriveEncoder.getPosition();
+        //System.out.println("PWM L:" + leftDriveEncoder.getPosition());
         return currentPositionLeft;
     }
 
     public double rightEncoderCurrentPos(){
-        double currentPositionRight = dutyCycleDrivetrainEncoderRight.get()*1000; 
-        System.out.println("PWM R:" + rightDriveEncoder.getPosition());
+        //double currentPositionRight = dutyCycleDrivetrainEncoderRight.get()*1000; 
+        double currentPositionRight = leftDriveEncoder.getPosition();
+        //System.out.println("PWM R:" + rightDriveEncoder.getPosition());
         return currentPositionRight;
     }
 
