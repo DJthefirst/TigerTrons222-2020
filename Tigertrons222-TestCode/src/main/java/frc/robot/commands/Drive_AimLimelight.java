@@ -12,6 +12,7 @@ public class Drive_AimLimelight extends CommandBase{
 
     private final Drivetrain m_subsystem;
     NetworkTable table;
+    double end = 10;
     double xval;
     double rotateSpeed;
 
@@ -46,7 +47,9 @@ public class Drive_AimLimelight extends CommandBase{
 
         System.out.println("x;"+ xx +" y;"+ yy +" area;"+ Are);
 
-        // rotateSpeed = m_subsystem.LimePidRotate(offset, xx);//2.57
+        //caluate end
+        end = (end/1.1) + Math.abs(xx);
+
         if(Math.abs(xx) > 4.5){
         xx = xx/25;
             rotateSpeed = xx;
@@ -85,6 +88,6 @@ public class Drive_AimLimelight extends CommandBase{
     
     @Override
     public boolean isFinished() {
-      return false;
+      return end < .2;
     }
 }

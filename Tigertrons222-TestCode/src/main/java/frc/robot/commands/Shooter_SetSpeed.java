@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Shooter;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,7 +13,8 @@ public class Shooter_SetSpeed extends CommandBase {
 
   NetworkTable table;
   double SpeedPoint;
-  double x;
+  double[] previousVal = new double[10];
+  double TargDist = 0;
   double x2;
   double x3;
   double x4;
@@ -26,17 +28,29 @@ public class Shooter_SetSpeed extends CommandBase {
   
   @Override
   public void initialize() {
+    //initalize previous values
+    for(int i=0; i<10; i++){
+      previousVal[i]=0;
+    }
+
   }
   
   @Override
   public void execute() {
+    //shift previous values up one
+    for(int i=0; i<9; i++){
+      previousVal[i+1]=previousVal[i];
+    }
+
     table = NetworkTableInstance.getDefault().getTable("limelight");
-    x = SmartDashboard.getNumber("Distance from target",0);
-    x4 = x3;
-    x3 = x2;
-    x2 = x;
-    x = (x+x2+x3+x4)/4;
-    SpeedPoint= (-0.0000009*Math.pow(x,4) + 0.0041*Math.pow(x,3) - 2.7347*Math.pow(x,2) + 637.66*x - 52852);
+    previousVal[0] = SmartDashboard.getNumber("Distance from target",0);
+    
+    //compute average of previous values
+    double sum = 0;
+    for(int i=0; i<10; i++)sum += previousVal[i];
+    TargDist = sum/10;
+
+    SpeedPoint= (-0.0000009*Math.pow(TargDist,4) + 0.0041*Math.pow(TargDist,3) - 2.7347*Math.pow(TargDist,2) + 637.66*TargDist - 52852);
     if (SpeedPoint < -4500){
       SpeedPoint = -4500;
     }

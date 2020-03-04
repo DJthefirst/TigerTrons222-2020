@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Publish_data extends CommandBase {
     private final Limelight m_subsystem;
     NetworkTable table;
-    double x;
-    double y;
-    double z;
-    double area;
+    double limeX;
+    double limeY;
+    double limeZ;
+    double limeArea;
     double distFromTargetArea;
     double distFromTargetTangent;
 
@@ -40,18 +40,18 @@ public class Publish_data extends CommandBase {
     NetworkTableEntry ta = table.getEntry("ta");
 
     //read values periodically
-    x = tx.getDouble(0.0);
-    y = ty.getDouble(0.0);
-    area = ta.getDouble(0.0); 
+    limeX = tx.getDouble(0.0);
+    limeY = ty.getDouble(0.0);
+    limeArea = ta.getDouble(0.0); 
 
-    distFromTargetArea = 175.36*Math.pow(area,-0.747);
+    distFromTargetArea = 175.36*Math.pow(limeArea,-0.747);
     //distFromTargetTangent = 
     //h1=13.75
 
     SmartDashboard.putNumber("Distance from target", distFromTargetArea);
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);
+    SmartDashboard.putNumber("LimelightX", limeX);
+    SmartDashboard.putNumber("LimelightY", limeY);
+    SmartDashboard.putNumber("LimelightArea", limeArea);
     SmartDashboard.putNumber("GyroX",RobotContainer.m_gyro.getx());
     SmartDashboard.putNumber("GyroY",RobotContainer.m_gyro.gety());
   }

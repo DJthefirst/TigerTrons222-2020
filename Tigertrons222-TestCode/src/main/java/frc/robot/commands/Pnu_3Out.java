@@ -8,14 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.PnuHatchSubsystem;
+import frc.robot.subsystems.Pnu3Subsystem;
 
 
 /**
  * A command that releases the hatch.
  */
 public class Pnu_3Out extends InstantCommand {
-  public Pnu_3Out(PnuHatchSubsystem subsystem) {
+  public Pnu_3Out(Pnu3Subsystem subsystem) {
     super(subsystem::deploySolenoid, subsystem);
   }
 }

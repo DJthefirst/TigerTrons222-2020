@@ -18,7 +18,8 @@ public class RobotMap {
 	//Talons
 	public static final int TURRET_ROTATION_TALON = 9;
 
-	//Spikes
+	//Spark Pwm
+	public static final int LED_CONTROLLER = 0;
 
 	//Encoders
 	public static final int DRIVETRAIN_ENCODER_L = 0;

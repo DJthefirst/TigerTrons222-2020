@@ -19,15 +19,13 @@ import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Imu;
 import frc.robot.subsystems.LED;
-import frc.robot.subsystems.PnuHatchSubsystem;
+import frc.robot.subsystems.PnuHopperSubsystem;
 import frc.robot.subsystems.PnuShiftSubsystem;
-import frc.robot.subsystems.PnuUnknownSubsystem;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
-
+import frc.robot.subsystems.Pnu3Subsystem;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.commands.LED_spark;
-import frc.robot.commands.Limelight_GetData;
 import frc.robot.commands.Limelight_Led;
 import frc.robot.commands.Pnu_HopperIn;
 import frc.robot.commands.Pnu_HopperOut;
@@ -55,16 +53,15 @@ public class RobotContainer {
   public static final Shooter m_Shooter = new Shooter();
   public static final LED m_LED = new LED();
   public static final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
-  public static final PnuHatchSubsystem m_hatchSubsystem = new PnuHatchSubsystem();
+  public static final Pnu3Subsystem m_3Subsystem = new Pnu3Subsystem();
   public static final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();
-  public static final PnuUnknownSubsystem m_unknown = new PnuUnknownSubsystem();
+  public static final PnuHopperSubsystem m_hopper = new PnuHopperSubsystem();
   public static final Imu m_gyro = new Imu();
   public static final Limelight m_limelight = new Limelight();
   public static final Intake m_arm = new Intake();
 
   // Default Commands Only
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
-  private final Limelight_GetData m_limelightGetData = new Limelight_GetData(m_limelight);
   private final ComplexAuto m_auto = new ComplexAuto();
   private final Publish_data m_publish = new Publish_data(m_limelight);
 
@@ -116,8 +113,8 @@ public class RobotContainer {
     // A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
     RB1.whenPressed(new Pnu_ShiftOut(m_shift));
     RB1.whenReleased(new Pnu_ShiftIn(m_shift));
-    LB1.whenPressed(new Pnu_HopperOut(m_unknown));
-    LB1.whenReleased(new Pnu_HopperIn(m_unknown));
+    LB1.whenPressed(new Pnu_HopperOut(m_hopper));
+    LB1.whenReleased(new Pnu_HopperIn(m_hopper));
     ST1.whenPressed(new Limelight_Led());
 
     Y1.whileHeld(new Arm_Intake(-10000));
@@ -131,7 +128,7 @@ public class RobotContainer {
     B1.whileHeld(new Shooter_SetSpeed(-4500));
     A2.whileHeld(new Drive_AimLimelight());
     //X1.whileHeld(new Autodrive_forward(0, 120));
-    Y2.whileHeld(new Auto_Shoot());
+    Y2.whileHeld(new Auto_Shoot(-3500));
     //B1.whileHeld(new Btn_ResetEncoder());
     X2.whileHeld(new ComplexAuto());
 
@@ -144,7 +141,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
     return new ComplexAuto();
   }
 }

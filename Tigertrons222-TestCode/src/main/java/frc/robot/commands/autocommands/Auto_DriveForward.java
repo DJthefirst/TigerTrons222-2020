@@ -5,7 +5,7 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Autodrive_forward extends CommandBase {
+public class Auto_DriveForward extends CommandBase {
   private final Drivetrain m_subsystem;
 
   double distance = 1;
@@ -14,7 +14,7 @@ public class Autodrive_forward extends CommandBase {
   double x = 0;
   double y = 0;
 
-  public Autodrive_forward(double moveSpeedVal, double DistanceVal) {
+  public Auto_DriveForward(double moveSpeedVal, double DistanceVal) {
     distance = DistanceVal;
     //double moveSpeed = moveSpeedVal;
     m_subsystem = RobotContainer.m_drivetrain;

@@ -19,7 +19,6 @@ public class Conveyor_Intake extends CommandBase {
   public void initialize() {
   }
 
-  
   @Override
   public void execute() {
     m_subsystem.spinSpeedPID(SpeedPoint);
@@ -31,7 +30,6 @@ public class Conveyor_Intake extends CommandBase {
     m_subsystem.spinSpeed(0);
   }
 
-  
   @Override
   public boolean isFinished() {
     return false;

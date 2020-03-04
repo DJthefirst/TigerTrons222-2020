@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Auto_Shoot extends CommandBase {
     private final Drivetrain m_subsystem;
 
-    double ShooterRPMTarget = -3500;
+    double ShooterRPMTarget;
     double intakeSpeed;
 
-    public Auto_Shoot() {
-
-    m_subsystem = RobotContainer.m_drivetrain;
+    public Auto_Shoot(double targetShooter) {
+      ShooterRPMTarget =targetShooter;
+      m_subsystem = RobotContainer.m_drivetrain;
   
     addRequirements(m_subsystem);
   }
