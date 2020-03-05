@@ -33,7 +33,7 @@ public final class Constants {
   public static final Gains drivetrain_LimeRotate_kGains = new Gains(.08, .07, .01, 0, 0, 0, 0, 0); //(.055, .06, .0085, 0, 0, 0, 0, 0)
 
 
-  public static final double drivetrain_kVel = 1;
+  public static final double drivetrain_kVel = 1; //unsure
   public static final double drivetrain_kAcc = .5;
   //50 .01 32
   //Constant Speeds

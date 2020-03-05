@@ -12,7 +12,7 @@ public class Shooter_SetSpeed extends CommandBase {
   private final Shooter m_subsystem;
 
   NetworkTable table;
-  double SpeedPoint;
+  double SpeedPoint =0;
   double[] previousVal = new double[10];
   double TargDist = 0;
   double x2;
@@ -43,8 +43,19 @@ public class Shooter_SetSpeed extends CommandBase {
     }
 
     table = NetworkTableInstance.getDefault().getTable("limelight");
-    previousVal[0] = SmartDashboard.getNumber("Distance from target",0);
     
+
+    //vefiy limelight is targeting
+    if(table.getEntry("pipeline").getDouble(0.0) == 1
+    && SmartDashboard.getNumber("Distance from target",180) < 400
+    && SmartDashboard.getNumber("Distance from target",180) > 50){
+      previousVal[0] = SmartDashboard.getNumber("Distance from target",180);
+    }
+    else{
+      previousVal[0] =180;
+    }
+    
+
     //compute average of previous values
     double sum = 0;
     for(int i=0; i<10; i++)sum += previousVal[i];

@@ -125,7 +125,7 @@ public class RobotContainer {
     X1.whileHeld(new Conveyor_Intake(Constants.conveyor_speed));
     //Y1.whileHeld(new Conveyor_Intake(-12000));
     A1.whileHeld(new Conveyor_Intake(-6000));
-    B1.whileHeld(new Shooter_SetSpeed(-4500));
+    B1.whileHeld(new Shooter_SetSpeed(4500));
     A2.whileHeld(new Drive_AimLimelight());
     //X1.whileHeld(new Autodrive_forward(0, 120));
     Y2.whileHeld(new Auto_Shoot(-3500));

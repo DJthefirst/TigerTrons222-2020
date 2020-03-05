@@ -35,8 +35,6 @@ public void execute() {
   currentDistance = (m_subsystem.leftEncoderCurrentPos());
   m_subsystem.PidDrive(x);
   y++;
-  System.out.println("flahdbf "+initalDistance + x);
-  System.out.println(currentDistance);
   ///m_subsystem.leftEncoderABSPos();
   }
 
@@ -48,12 +46,12 @@ public void execute() {
   @Override
   public boolean isFinished() {
     //return (Math.abs(currentDistance) > Math.abs(initalDistance + x));
-    if(Math.abs(currentDistance) > Math.abs(initalDistance + x)){
-      return true;
-    }
-    else{
+    //if(Math.abs(currentDistance) > Math.abs(initalDistance + x-2)){
+    //  return true;
+    //}
+    //else{
       return false;
 
-    }
+    //}
   }
 }

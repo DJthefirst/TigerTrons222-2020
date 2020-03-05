@@ -54,10 +54,10 @@ public void spinSpeedPID (double SetPointSpeed){
     m_shooterpidControllerRight.setReference(SetPointSpeed, ControlType.kVelocity);
 }
 
-public void spinSpeedDoublePID (double SetPointSpeedLeft,double SetPointSpeedRight){
-    m_shooterpidControllerLeft.setReference(-SetPointSpeedLeft, ControlType.kVelocity);
-    m_shooterpidControllerRight.setReference(SetPointSpeedRight, ControlType.kVelocity);
-}
+//public void spinSpeedDoublePID (double SetPointSpeedLeft,double SetPointSpeedRight){
+//    m_shooterpidControllerLeft.setReference(-SetPointSpeedLeft, ControlType.kVelocity);
+//    m_shooterpidControllerRight.setReference(SetPointSpeedRight, ControlType.kVelocity);
+//}
 
 public double getShooterSpeed(){
     double shotSpeed = ShooterCANEncoderLeft.getVelocity();

@@ -14,6 +14,7 @@ public class Drive_AimLimelight extends CommandBase{
     NetworkTable table;
     double end = 10;
     double xval;
+    double x =0;
     double rotateSpeed;
 
     public Drive_AimLimelight()
@@ -35,6 +36,7 @@ public class Drive_AimLimelight extends CommandBase{
         NetworkTableEntry ty = table.getEntry("ty");
         NetworkTableEntry ta = table.getEntry("ta");
 
+        x ++;
         //read values periodically
         double xx = tx.getDouble(0.0);
         double yy = ty.getDouble(0.0);
@@ -88,6 +90,7 @@ public class Drive_AimLimelight extends CommandBase{
     
     @Override
     public boolean isFinished() {
-      return end < .2;
+        return x > 100;
+      //return end < .2;
     }
 }
