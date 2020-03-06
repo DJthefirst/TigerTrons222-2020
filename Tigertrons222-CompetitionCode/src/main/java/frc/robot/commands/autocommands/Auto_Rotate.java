@@ -12,9 +12,8 @@ public class Auto_Rotate extends CommandBase {
   double angle;
   double end =100;
 
-  public Auto_Rotate(double moveSpeedVal, double angleVal) {
+  public Auto_Rotate(double angleVal) {
     targetAngle = angleVal;
-    //double moveSpeed = moveSpeedVal;
     m_subsystem = RobotContainer.m_drivetrain;
     addRequirements(m_subsystem);
   }
@@ -32,7 +31,6 @@ public void execute() {
 
   angle = RobotContainer.m_gyro.getangle();
   double x = m_subsystem.GyroPidRotate(initalAngle + targetAngle, angle);
-  //System.out.println("Target :"+targetAngle+", Current :"+angle+", Speed :"+x);
 
   m_subsystem.tankDrive(x, -x);
 
@@ -46,9 +44,6 @@ public void execute() {
   @Override
   public boolean isFinished() {
     end = (end/1.09) + Math.abs((Math.abs(targetAngle + initalAngle) - Math.abs(angle)));
-    //System.out.println("E "+end);
-    //System.out.println("I "+initalAngle);
-    //System.out.println("A "+angle);
     return (end < 1);
   }
 }

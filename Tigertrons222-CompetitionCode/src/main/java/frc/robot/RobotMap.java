@@ -10,21 +10,26 @@ public class RobotMap {
 	public static final int DRIVETRAIN_LEFT_Slave1_SPARKMAX = 5;
 	public static final int DRIVETRAIN_LEFT_Slave2_SPARKMAX = 6;
 
-	public static final int INTAKE_SPARKMAX = 15;
-	public static final int SHOOTER1_SPARKMAX = 13;
-	public static final int SHOOTER2_SPARKMAX = 14;
-	public static final int CONVEYOR_SPARKMAX = 16;
+	public static final int INTAKE_SPARKMAX = 7; //15 for practicebot
+	public static final int SHOOTER1_SPARKMAX = 8;//13 for practicebot
+	public static final int SHOOTER2_SPARKMAX = 10; //14 for practicebot	
+	public static final int CONVEYOR_SPARKMAX = 9; //16 for practicebot
 
 	//Talons
-	public static final int TURRET_ROTATION_TALON = 9;
+	public static final int ROBOT_CLIMB_TALON1 = 11;
+	public static final int ROBOT_CLIMB_TALON2 = 12;
 
-	//Spark Pwm
-	public static final int LED_CONTROLLER = 0;
+	//Digital Inputs
 
-	//Encoders
-	public static final int DRIVETRAIN_ENCODER_L = 0;
-	public static final int DRIVETRAIN_ENCODER_R = 1;
-	public static final int TURRET_ENCODER = 2;
+		//Encoders
+		public static final int DRIVETRAIN_ENCODER_L = 0;
+		public static final int DRIVETRAIN_ENCODER_R = 1;
+
+		//Spark Pwm
+		public static final int LED_CONTROLLER = 2;
+
+		//LimitSwitch
+		public static final int ARM_LIMITSWITCH = 3;
 
 	//Controllers
 	public static final int XBOX_DRIVER_CONTROLLER1 = 0;
@@ -47,4 +52,11 @@ public class RobotMap {
   	public static final int UNKNOWN3_SOLENOID_MODULE = 0;
 	public static final int UNKNOWN3_SOLENOID_DEPLOY = 6;
 	public static final int UNKNOWN3_SOLENOID_RETRACT = 7;
+
+	//Led Color Codes
+	public static final double LED_COLOR_PASSIVE = .99;	//black
+	public static final double LED_COLOR_AIMING =.61;	//red
+	public static final double LED_COLOR_ALIGNED = .73;	//lime
+	public static final double LED_COLOR_FIREING = .75;	//Dark green
+	
 }

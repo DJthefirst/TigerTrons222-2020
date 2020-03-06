@@ -18,6 +18,7 @@ public class Shooter_SetSpeed extends CommandBase {
   double x2;
   double x3;
   double x4;
+  double sum;
  
 
   public Shooter_SetSpeed(double Speed) {
@@ -29,6 +30,7 @@ public class Shooter_SetSpeed extends CommandBase {
   @Override
   public void initialize() {
     //initalize previous values
+    sum = 0;
     for(int i=0; i<10; i++){
       previousVal[i]=0;
     }
@@ -49,7 +51,7 @@ public class Shooter_SetSpeed extends CommandBase {
     if(table.getEntry("pipeline").getDouble(0.0) == 1
     && SmartDashboard.getNumber("Distance from target",180) < 400
     && SmartDashboard.getNumber("Distance from target",180) > 50){
-      previousVal[0] = SmartDashboard.getNumber("Distance from target",180);
+    previousVal[0] = SmartDashboard.getNumber("Distance from target",180);
     }
     else{
       previousVal[0] =180;
@@ -57,17 +59,18 @@ public class Shooter_SetSpeed extends CommandBase {
     
 
     //compute average of previous values
-    double sum = 0;
-    for(int i=0; i<10; i++)sum += previousVal[i];
+    sum =0;
+    for(int i=0; i<9; i++)sum += previousVal[i];
     TargDist = sum/10;
+    System.out.println("xindrgiurg:" + TargDist);
 
-    SpeedPoint= (-0.0000009*Math.pow(TargDist,4) + 0.0041*Math.pow(TargDist,3) - 2.7347*Math.pow(TargDist,2) + 637.66*TargDist - 52852);
+    SpeedPoint= -((-0.0000009*Math.pow(TargDist,4) + 0.0041*Math.pow(TargDist,3) - 2.7347*Math.pow(TargDist,2) + 637.66*TargDist - 52852));
     if (SpeedPoint < -4500){
-      SpeedPoint = -4500;
+    SpeedPoint = -4500;
     }
-
+    System.out.println(SpeedPoint);
     SmartDashboard.putNumber("Shooter speed", SpeedPoint);
-    //SpeedPoint = SmartDashboard.getNumber("Shooter Rpm",1000);
+    SpeedPoint = SmartDashboard.getNumber("Shooter Rpm",1000);
     m_subsystem.spinSpeedPID(SpeedPoint);
   }
 

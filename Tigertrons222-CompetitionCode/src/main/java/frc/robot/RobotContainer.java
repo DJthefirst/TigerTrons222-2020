@@ -25,6 +25,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Pnu3Subsystem;
 import frc.robot.commands.Drive_Arcade;
+import frc.robot.commands.Intake_Limit;
 import frc.robot.commands.LED_spark;
 import frc.robot.commands.Limelight_Led;
 import frc.robot.commands.Pnu_HopperIn;
@@ -34,7 +35,8 @@ import frc.robot.commands.Pnu_ShiftOut;
 import frc.robot.commands.Publish_data;
 import frc.robot.commands.Shooter_SetSpeed;
 import frc.robot.commands.autocommands.Auto_Shoot;
-import frc.robot.commands.autocommands.ComplexAuto;
+import frc.robot.commands.autocommands.Btn_ResetEncoder;
+import frc.robot.commands.autocommands.ComplexAuto_Straight5;
 import frc.robot.commands.Conveyor_Intake;
 import frc.robot.commands.Drive_AimLimelight;
 import frc.robot.commands.Arm_Intake;
@@ -62,9 +64,13 @@ public class RobotContainer {
 
   // Default Commands Only
   private final Drive_Arcade m_drive_arcade = new Drive_Arcade(m_drivetrain);
-  private final ComplexAuto m_auto = new ComplexAuto();
   private final Publish_data m_publish = new Publish_data(m_limelight);
+  private final Intake_Limit m_intakeLimit = new Intake_Limit(m_arm);
 
+  //Auto Protocalls
+  //private final ComplexAuto_Straight5 m_auto = new ComplexAuto_Straight5();
+
+  //Settup controllers
   public static final XboxController Controller = new XboxController(0);
   public static final XboxController Controller2 = new XboxController(1);
 
@@ -98,6 +104,7 @@ public class RobotContainer {
     // Default Commands Only
     m_drivetrain.setDefaultCommand(m_drive_arcade);
     m_limelight.setDefaultCommand(m_publish);
+    m_arm.setDefaultCommand(m_intakeLimit);
   }
 
   /**
@@ -129,8 +136,8 @@ public class RobotContainer {
     A2.whileHeld(new Drive_AimLimelight());
     //X1.whileHeld(new Autodrive_forward(0, 120));
     Y2.whileHeld(new Auto_Shoot(-3500));
-    //B1.whileHeld(new Btn_ResetEncoder());
-    X2.whileHeld(new ComplexAuto());
+    B2.whileHeld(new Btn_ResetEncoder());
+    X2.whileHeld(new ComplexAuto_Straight5());
 
     
   }
@@ -141,6 +148,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new ComplexAuto();
+    return new ComplexAuto_Straight5();
   }
 }

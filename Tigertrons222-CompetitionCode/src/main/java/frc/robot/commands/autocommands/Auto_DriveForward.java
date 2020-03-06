@@ -14,9 +14,8 @@ public class Auto_DriveForward extends CommandBase {
   double x = 0;
   double y = 0;
 
-  public Auto_DriveForward(double moveSpeedVal, double DistanceVal) {
+  public Auto_DriveForward(double DistanceVal) {
     distance = DistanceVal;
-    //double moveSpeed = moveSpeedVal;
     m_subsystem = RobotContainer.m_drivetrain;
     addRequirements(m_subsystem);
   }
@@ -24,7 +23,6 @@ public class Auto_DriveForward extends CommandBase {
 @Override
 public void initialize() {
 
-    //initalAngle = RobotContainer.m_gyro.getangle();
     RobotContainer.m_drivetrain.resetDriveEncoderPos();
     initalDistance = (m_subsystem.leftEncoderCurrentPos());
     x = distance*Constants.motorRotationInch/Constants.wheelRotationInch;
@@ -35,7 +33,6 @@ public void execute() {
   currentDistance = (m_subsystem.leftEncoderCurrentPos());
   m_subsystem.PidDrive(x);
   y++;
-  ///m_subsystem.leftEncoderABSPos();
   }
 
   @Override
@@ -45,13 +42,6 @@ public void execute() {
   
   @Override
   public boolean isFinished() {
-    //return (Math.abs(currentDistance) > Math.abs(initalDistance + x));
-    //if(Math.abs(currentDistance) > Math.abs(initalDistance + x-2)){
-    //  return true;
-    //}
-    //else{
-      return false;
-
-    //}
+    return false;
   }
 }

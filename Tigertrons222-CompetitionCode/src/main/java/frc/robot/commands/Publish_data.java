@@ -17,6 +17,7 @@ public class Publish_data extends CommandBase {
     double limeArea;
     double distFromTargetArea;
     double distFromTargetTangent;
+    double rightEncoderPosition;
 
 
     public Publish_data(Limelight subsystem) {
@@ -54,6 +55,8 @@ public class Publish_data extends CommandBase {
     SmartDashboard.putNumber("LimelightArea", limeArea);
     SmartDashboard.putNumber("GyroX",RobotContainer.m_gyro.getx());
     SmartDashboard.putNumber("GyroY",RobotContainer.m_gyro.gety());
+    SmartDashboard.putNumber("leftEncoderPos",RobotContainer.m_drivetrain.leftEncoderCurrentPos());
+    SmartDashboard.putBoolean("ArmLimit", RobotContainer.m_arm.GetIntakeLimit());
   }
 
   @Override

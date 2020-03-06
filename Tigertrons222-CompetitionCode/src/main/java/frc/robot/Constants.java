@@ -38,7 +38,7 @@ public final class Constants {
   //50 .01 32
   //Constant Speeds
   public static final double wheelRotationInch = 5.75*Math.PI;
-  public static final double motorRotationInch = 20.44;
+  public static final double motorRotationInch = 19.8735; //18.948
   public static final double conveyor_speed = -10000;
   public static final double turretAngleError = 2;
 }

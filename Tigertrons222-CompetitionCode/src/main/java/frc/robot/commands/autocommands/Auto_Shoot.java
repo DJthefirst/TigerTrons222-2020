@@ -5,14 +5,14 @@ import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Auto_Shoot extends CommandBase {
-    private final Drivetrain m_subsystem;
+  private final Drivetrain m_subsystem;
 
-    double ShooterRPMTarget;
-    double intakeSpeed;
+  double ShooterRPMTarget;
+  double intakeSpeed;
 
-    public Auto_Shoot(double targetShooter) {
-      ShooterRPMTarget =targetShooter;
-      m_subsystem = RobotContainer.m_drivetrain;
+  public Auto_Shoot(double targetShooter) {
+    ShooterRPMTarget =targetShooter;
+    m_subsystem = RobotContainer.m_drivetrain;
   
     addRequirements(m_subsystem);
   }
