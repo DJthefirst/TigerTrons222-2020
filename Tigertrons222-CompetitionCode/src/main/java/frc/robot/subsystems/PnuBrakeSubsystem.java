@@ -17,8 +17,8 @@ import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.kReverse;
 /**
  * A hatch mechanism actuated by a single {@link DoubleSolenoid}.
  */
-public class Pnu3Subsystem extends SubsystemBase {
-  private final DoubleSolenoid m_hatchSolenoid = new DoubleSolenoid(RobotMap.UNKNOWN1_SOLENOID_MODULE, RobotMap.UNKNOWN1_SOLENOID_DEPLOY, RobotMap.UNKNOWN1_SOLENOID_RETRACT);
+public class PnuBrakeSubsystem extends SubsystemBase {
+  private final DoubleSolenoid m_hatchSolenoid = new DoubleSolenoid(RobotMap.BRAKE_SOLENOID_MODULE, RobotMap.BRAKE_SOLENOID_DEPLOY, RobotMap.BRAKE_SOLENOID_RETRACT);
 
   /**
    * Grabs the hatch.

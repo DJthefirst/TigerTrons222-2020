@@ -18,7 +18,7 @@ public class Intake extends SubsystemBase {
     CANSparkMax IntakeSparkMax = new CANSparkMax(RobotMap.INTAKE_SPARKMAX, MotorType.kBrushless);
     CANEncoder IntakeCANEncoder = new CANEncoder(IntakeSparkMax);
     WPI_TalonSRX MasterTalon = new WPI_TalonSRX(RobotMap.ROBOT_CLIMB_TALON1);
-    WPI_TalonSRX SlaveTalon = new WPI_TalonSRX(RobotMap.ROBOT_CLIMB_TALON1);
+    WPI_TalonSRX SlaveTalon = new WPI_TalonSRX(RobotMap.ROBOT_CLIMB_TALON2);
     DigitalInput forwardLimitSwitch = new DigitalInput(RobotMap.ARM_LIMITSWITCH);
 
     private CANPIDController m_intakePidController = new CANPIDController(IntakeSparkMax);

@@ -23,11 +23,16 @@ import frc.robot.subsystems.PnuHopperSubsystem;
 import frc.robot.subsystems.PnuShiftSubsystem;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Pnu3Subsystem;
+import frc.robot.subsystems.PnuBrakeSubsystem;
+import frc.robot.subsystems.PnuClimbSubsystem;
 import frc.robot.commands.Drive_Arcade;
 import frc.robot.commands.Intake_Limit;
 import frc.robot.commands.LED_spark;
 import frc.robot.commands.Limelight_Led;
+import frc.robot.commands.Pnu_BrakeIn;
+import frc.robot.commands.Pnu_BrakeOut;
+import frc.robot.commands.Pnu_ClimbIn;
+import frc.robot.commands.Pnu_ClimbOut;
 import frc.robot.commands.Pnu_HopperIn;
 import frc.robot.commands.Pnu_HopperOut;
 import frc.robot.commands.Pnu_ShiftIn;
@@ -35,6 +40,7 @@ import frc.robot.commands.Pnu_ShiftOut;
 import frc.robot.commands.Publish_data;
 import frc.robot.commands.Shooter_SetSpeed;
 import frc.robot.commands.autocommands.Auto_Shoot;
+import frc.robot.commands.autocommands.Btn_AimRobot;
 import frc.robot.commands.autocommands.Btn_ResetEncoder;
 import frc.robot.commands.autocommands.ComplexAuto_Straight5;
 import frc.robot.commands.Conveyor_Intake;
@@ -55,7 +61,8 @@ public class RobotContainer {
   public static final Shooter m_Shooter = new Shooter();
   public static final LED m_LED = new LED();
   public static final ControlPanelSubsystem m_colorSubsystem = new ControlPanelSubsystem();
-  public static final Pnu3Subsystem m_3Subsystem = new Pnu3Subsystem();
+  public static final PnuBrakeSubsystem m_brake = new PnuBrakeSubsystem();
+  public static final PnuClimbSubsystem m_climb = new PnuClimbSubsystem();
   public static final PnuShiftSubsystem m_shift = new PnuShiftSubsystem();
   public static final PnuHopperSubsystem m_hopper = new PnuHopperSubsystem();
   public static final Imu m_gyro = new Imu();
@@ -116,37 +123,24 @@ public class RobotContainer {
    * @throws IOException
    */
   private void configureButtonBindings(){
-    // A1.whenPressed(new Pnu_HatchOut(m_hatchSubsystem));
-    // A1.whenReleased(new Pnu_HatchIn(m_hatchSubsystem));
     RB1.whenPressed(new Pnu_ShiftOut(m_shift));
     RB1.whenReleased(new Pnu_ShiftIn(m_shift));
     LB1.whenPressed(new Pnu_HopperOut(m_hopper));
     LB1.whenReleased(new Pnu_HopperIn(m_hopper));
     ST1.whenPressed(new Limelight_Led());
+    B1.whileHeld(new Btn_AimRobot());
 
-    Y1.whileHeld(new Arm_Intake(-10000));
-    //Y1.whileHeld(new Arm_Intake(-8000));
-    //X1.whileHeld(new Arm_Intake(-6000));
-    
-    //Y1.whileHeld(new Shooter_Conveyor(-4000,-6000));
-    X1.whileHeld(new Conveyor_Intake(Constants.conveyor_speed));
-    //Y1.whileHeld(new Conveyor_Intake(-12000));
-    A1.whileHeld(new Conveyor_Intake(-6000));
-    B1.whileHeld(new Shooter_SetSpeed(4500));
+    RB2.whenPressed(new Pnu_ClimbOut(m_climb));
+    RB2.whenReleased(new Pnu_ClimbIn(m_climb));
+    LB2.whenPressed(new Pnu_BrakeIn(m_brake));
+    LB2.whenReleased(new Pnu_BrakeOut(m_brake));
+    Y2.whileHeld(new Arm_Intake(-10000));
+    X2.whileHeld(new Conveyor_Intake(Constants.conveyor_speed));
+    B2.whileHeld(new Shooter_SetSpeed(4500));
     A2.whileHeld(new Drive_AimLimelight());
-    //X1.whileHeld(new Autodrive_forward(0, 120));
-    Y2.whileHeld(new Auto_Shoot(-3500));
-    B2.whileHeld(new Btn_ResetEncoder());
-    X2.whileHeld(new ComplexAuto_Straight5());
 
-    
   }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
   public Command getAutonomousCommand() {
     return new ComplexAuto_Straight5();
   }

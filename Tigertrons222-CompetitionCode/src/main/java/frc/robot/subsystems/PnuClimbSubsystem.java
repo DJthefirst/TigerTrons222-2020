@@ -17,20 +17,20 @@ import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.kReverse;
 /**
  * A hatch mechanism actuated by a single {@link DoubleSolenoid}.
  */
-public class PnuHopperSubsystem extends SubsystemBase {
-  private final DoubleSolenoid m_hopper = new DoubleSolenoid(RobotMap.HOPPER_SOLENOID_MODULE, RobotMap.HOPPER_SOLENOID_DEPLOY, RobotMap.HOPPER_SOLENOID_RETRACT);
+public class PnuClimbSubsystem extends SubsystemBase {
+  private final DoubleSolenoid m_hatchSolenoid = new DoubleSolenoid(RobotMap.HANG_SOLENOID_MODULE, RobotMap.HANG_SOLENOID_DEPLOY, RobotMap.HANG_SOLENOID_RETRACT);
 
   /**
    * Grabs the hatch.
    */
   public void deploySolenoid() {
-    m_hopper.set(kForward);
+    m_hatchSolenoid.set(kForward);
   }
 
   /**
    * Releases the hatch.
    */
   public void retractSolenoid() {
-    m_hopper.set(kReverse);
+    m_hatchSolenoid.set(kReverse);
   }
 }

@@ -16,6 +16,5 @@ public class ComplexAuto_TurnNShoot extends SequentialCommandGroup {
     addCommands(new Pnu_HopperOut(RobotContainer.m_hopper));
     addCommands(new LED_spark(RobotMap.LED_COLOR_FIREING));
     addCommands(new Auto_Shoot(-3500));
-
   }
 }
