@@ -13,34 +13,31 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.Intake;
 
 
-public class Intake_Limit extends CommandBase {
+public class Intake_Climb extends CommandBase {
   private final Intake m_subsystem;
-  NetworkTable table;
-
-  public Intake_Limit(Intake subsystem) {
-      m_subsystem = subsystem;
+  double climbSpeed;
+  public Intake_Climb() {
+      m_subsystem = RobotContainer.m_arm;
     
       addRequirements(m_subsystem);
     }
       
   @Override
   public void initialize() {
-    SmartDashboard.putNumber("Clmib Speed",.5);
+    SmartDashboard.putNumber("Clmib Speed",0);
     }
     
       
   @Override
   public void execute() {
-    table = NetworkTableInstance.getDefault().getTable("limelight");
-    if (m_subsystem.GetIntakeLimit()) // If the forward limit switch is pressed, we want to keep the values between -1 and 0
-      m_subsystem.Drive(SmartDashboard.getNumber("Clmib Speed",10));
-    else{
-      m_subsystem.Drive(0);
-    }
+    climbSpeed =RobotContainer.Controller2.getRawAxis(1);
+
+    m_subsystem.Drive(climbSpeed);
 
   }
   @Override
   public void end(boolean interrupted) {
+    m_subsystem.Drive(0);
   }
     
       

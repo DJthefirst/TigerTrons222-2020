@@ -21,7 +21,8 @@ public class Arm_Intake extends CommandBase {
 
   @Override
   public void execute() {
-    m_subsystem.spinSpeedPID(SpeedPoint);
+    //m_subsystem.spinSpeedPID(SpeedPoint);
+    m_subsystem.spinSpeed(SpeedPoint);
 
   }
 

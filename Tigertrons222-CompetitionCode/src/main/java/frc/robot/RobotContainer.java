@@ -26,6 +26,7 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.PnuBrakeSubsystem;
 import frc.robot.subsystems.PnuClimbSubsystem;
 import frc.robot.commands.Drive_Arcade;
+import frc.robot.commands.Intake_Climb;
 import frc.robot.commands.Intake_Limit;
 import frc.robot.commands.LED_spark;
 import frc.robot.commands.Limelight_Led;
@@ -38,7 +39,7 @@ import frc.robot.commands.Pnu_HopperOut;
 import frc.robot.commands.Pnu_ShiftIn;
 import frc.robot.commands.Pnu_ShiftOut;
 import frc.robot.commands.Publish_data;
-import frc.robot.commands.Shooter_SetSpeed;
+import frc.robot.commands.Shooter_AutoSetSpeed;
 import frc.robot.commands.autocommands.Auto_Shoot;
 import frc.robot.commands.autocommands.Btn_AimRobot;
 import frc.robot.commands.autocommands.Btn_ResetEncoder;
@@ -111,7 +112,7 @@ public class RobotContainer {
     // Default Commands Only
     m_drivetrain.setDefaultCommand(m_drive_arcade);
     m_limelight.setDefaultCommand(m_publish);
-    m_arm.setDefaultCommand(m_intakeLimit);
+    //m_arm.setDefaultCommand(m_intakeLimit);
   }
 
   /**
@@ -125,19 +126,23 @@ public class RobotContainer {
   private void configureButtonBindings(){
     RB1.whenPressed(new Pnu_ShiftOut(m_shift));
     RB1.whenReleased(new Pnu_ShiftIn(m_shift));
-    LB1.whenPressed(new Pnu_HopperOut(m_hopper));
-    LB1.whenReleased(new Pnu_HopperIn(m_hopper));
+    LB1.whenPressed(new Pnu_HopperIn(m_hopper));
+    LB1.whenReleased(new Pnu_HopperOut(m_hopper));
     ST1.whenPressed(new Limelight_Led());
     B1.whileHeld(new Btn_AimRobot());
+    
+
 
     RB2.whenPressed(new Pnu_ClimbOut(m_climb));
     RB2.whenReleased(new Pnu_ClimbIn(m_climb));
     LB2.whenPressed(new Pnu_BrakeIn(m_brake));
     LB2.whenReleased(new Pnu_BrakeOut(m_brake));
-    Y2.whileHeld(new Arm_Intake(-10000));
+    Y2.whileHeld(new Arm_Intake(-.9));//-1
     X2.whileHeld(new Conveyor_Intake(Constants.conveyor_speed));
-    B2.whileHeld(new Shooter_SetSpeed(4500));
+    B2.whileHeld(new Shooter_AutoSetSpeed());
     A2.whileHeld(new Drive_AimLimelight());
+    BK2.whenPressed(new Intake_Limit(m_arm));
+    ST2.toggleWhenActive(new Intake_Climb());
 
   }
 

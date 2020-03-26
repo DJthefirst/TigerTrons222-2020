@@ -23,9 +23,9 @@ public final class Constants {
 	public static final int kTimeoutMs = 30;
 
   //PIDs
-  public static final Gains spary_kGains = new Gains(5e-5, 1e-6, 0, 0, 0, -1, 1, 4200);
+  public static final Gains spary_kGains = new Gains(5e-5, 1e-6, 0, 0, 0, -1, 1, 4200); //5e-5, 1e-6, 0, 0, 0, -1, 1, 4200
   public static final Gains shooter_kGains = new Gains(2e-3, 0, 6e-3, 0, 0, -1, 1, 4200); //2e-3, 0, 6e-3, 0, 0, -1, 1, 4200
-  public static final Gains conveyor_kGains = new Gains(5e-5, 1e-6, 0, 0, 0, -1, 1, 4200);
+  public static final Gains conveyor_kGains = new Gains(7e-5, 1e-6, 0, 0, 0, -1, 1, 4200);//5e-5, 1e-6, 0, 0, 0, -1, 1, 4200
   public static final Gains turret_kGains = new Gains(35, 0.01, 15, 0, 0, 0, 1.0, 0);
 
   public static final Gains drivetrain_Drive_kGains = new Gains(.1, 1e-4, 1, 0, 0, 1, .3, 0);
